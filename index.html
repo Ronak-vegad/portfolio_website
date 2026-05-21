@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Portfolio of Ronak Vegad — AI/ML engineer building RAG pipelines, voice agents, OCR systems, and full-stack LLM applications.">
+  <title>Ronak Vegad — AI / ML Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@400;600;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #080c12;
+      --bg2: #0d1420;
+      --bg3: #111927;
+      --border: rgba(255, 255, 255, 0.07);
+      --border2: rgba(255, 255, 255, 0.12);
+      --accent: #00e5a0;
+      --accent2: #0095ff;
+      --accent3: #8b5cf6;
+      --text: #e8edf5;
+      --text2: #8a9ab8;
+      --text3: #4a5a78;
+      --mono: 'JetBrains Mono', monospace;
+      --sans: 'Syne', sans-serif;
+      --tag-bg: rgba(0, 229, 160, 0.08);
+      --tag-border: rgba(0, 229, 160, 0.2);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8, 12, 18, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 52px;
+    }
+
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text2);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .nav-badge {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: rgba(0, 229, 160, 0.05);
+      animation: pulse-badge 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-badge {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(0, 229, 160, 0.2);
+      }
+
+      50% {
+        box-shadow: 0 0 0 5px rgba(0, 229, 160, 0);
+      }
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 72px 32px;
+      max-width: 880px;
+      margin: 0 auto;
+    }
+
+    /* HERO */
+    #hero {
+      padding-top: 80px;
+      padding-bottom: 88px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0, 229, 160, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 229, 160, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: radial-gradient(ellipse at 50% 0%, black 40%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse at 50% 0%, black 40%, transparent 80%);
+      pointer-events: none;
+    }
+
+    .hero-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-label::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-name {
+      font-size: clamp(36px, 6vw, 56px);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+      background: linear-gradient(135deg, #fff 30%, #8a9ab8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text2);
+      margin-bottom: 20px;
+    }
+
+    .hero-title span {
+      color: var(--accent);
+    }
+
+    .hero-desc {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--text2);
+      max-width: 540px;
+      line-height: 1.9;
+      margin-bottom: 32px;
+      border-left: 2px solid var(--accent);
+      padding-left: 16px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 44px;
+    }
+
+    .btn-primary {
+      font-family: var(--mono);
+      font-size: 12px;
+      background: var(--accent);
+      color: #080c12;
+      border: none;
+      padding: 11px 22px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: #00ffb3;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      font-family: var(--mono);
+      font-size: 12px;
+      background: transparent;
+      color: var(--text2);
+      border: 1px solid var(--border2);
+      padding: 11px 22px;
+      border-radius: 6px;
+      cursor: pointer;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      border-top: 1px solid var(--border);
+      padding-top: 32px;
+      flex-wrap: wrap;
+    }
+
+    .stat-num {
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .stat-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text3);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    /* SECTION HEADER */
+    .section-header {
+      margin-bottom: 36px;
+    }
+
+    .section-tag {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text3);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    /* PROJECTS */
+    .project-filters {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      font-family: var(--mono);
+      font-size: 11px;
+      border: 1px solid var(--border2);
+      background: transparent;
+      color: var(--text2);
+      padding: 6px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      letter-spacing: 0.05em;
+      transition: all 0.2s;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(0, 229, 160, 0.05);
+    }
+
+    .projects-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .project-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .project-card:hover {
+      border-color: var(--border2);
+      transform: translateY(-2px);
+    }
+
+    .project-card-top {
+      padding: 20px 20px 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .project-type-badge {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 4px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .badge-rag {
+      background: rgba(139, 92, 246, 0.12);
+      color: #a78bfa;
+      border: 1px solid rgba(139, 92, 246, 0.25);
+    }
+
+    .badge-voice {
+      background: rgba(0, 149, 255, 0.12);
+      color: #60b8ff;
+      border: 1px solid rgba(0, 149, 255, 0.25);
+    }
+
+    .badge-ocr {
+      background: rgba(251, 146, 60, 0.12);
+      color: #fb923c;
+      border: 1px solid rgba(251, 146, 60, 0.25);
+    }
+
+    .badge-full {
+      background: rgba(0, 229, 160, 0.10);
+      color: var(--accent);
+      border: 1px solid rgba(0, 229, 160, 0.2);
+    }
+
+    .project-title {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+
+    .project-body {
+      padding: 0 20px 20px;
+    }
+
+    .project-desc {
+      font-size: 13px;
+      color: var(--text2);
+      line-height: 1.75;
+      margin: 10px 0 12px;
+    }
+
+    .project-what-i-solved {
+      background: rgba(0, 229, 160, 0.05);
+      border: 1px solid rgba(0, 229, 160, 0.12);
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin: 12px 0;
+    }
+
+    .solved-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .solved-text {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text2);
+      line-height: 1.8;
+    }
+
+    /* Architecture flow */
+    .arch-diagram {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin: 12px 0;
+      overflow-x: auto;
+    }
+
+    .arch-flow {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      min-width: max-content;
+    }
+
+    .arch-node {
+      background: var(--bg2);
+      border: 1px solid var(--border2);
+      border-radius: 6px;
+      padding: 7px 11px;
+      font-family: var(--mono);
+      font-size: 10px;
+      white-space: nowrap;
+      color: var(--text);
+      text-align: center;
+      line-height: 1.5;
+      flex-shrink: 0;
+    }
+
+    .arch-node small {
+      display: block;
+      font-size: 9px;
+      color: var(--text3);
+      margin-top: 1px;
+    }
+
+    .arch-node.green {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(0, 229, 160, 0.06);
+    }
+
+    .arch-node.purple {
+      border-color: #a78bfa;
+      color: #a78bfa;
+      background: rgba(139, 92, 246, 0.06);
+    }
+
+    .arch-node.blue {
+      border-color: #60b8ff;
+      color: #60b8ff;
+      background: rgba(0, 149, 255, 0.06);
+    }
+
+    .arch-node.orange {
+      border-color: #fb923c;
+      color: #fb923c;
+      background: rgba(251, 146, 60, 0.06);
+    }
+
+    .arch-arrow {
+      color: var(--text3);
+      font-size: 13px;
+      padding: 0 5px;
+      flex-shrink: 0;
+    }
+
+    .project-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .tag {
+      font-family: var(--mono);
+      font-size: 10px;
+      background: var(--tag-bg);
+      border: 1px solid var(--tag-border);
+      color: var(--accent);
+      padding: 3px 9px;
+      border-radius: 4px;
+      letter-spacing: 0.03em;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 14px;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .proj-link {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text2);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 0.2s;
+      letter-spacing: 0.03em;
+    }
+
+    .proj-link:hover {
+      color: var(--accent);
+    }
+
+    .proj-link.demo {
+      color: var(--accent);
+    }
+
+    .proj-link.demo:hover {
+      color: #00ffb3;
+    }
+
+    /* SKILLS */
+    .skills-philosophy {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      padding: 14px 16px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text2);
+      margin-bottom: 28px;
+      line-height: 1.7;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 600px) {
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .skill-domain {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+    }
+
+    .skill-domain-title {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text3);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .domain-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+
+    .skill-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .skill-item:last-child {
+      border-bottom: none;
+    }
+
+    .skill-name {
+      font-size: 13px;
+      font-weight: 600;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .skill-proof {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text3);
+      margin-top: 3px;
+      line-height: 1.6;
+    }
+
+    .skill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+
+    .skill-dot.blue {
+      background: var(--accent2);
+    }
+
+    .skill-dot.purple {
+      background: var(--accent3);
+    }
+
+    .skill-dot.orange {
+      background: #fb923c;
+    }
+
+    .learning-section {
+      margin-top: 20px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+    }
+
+    .learning-items {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .learning-item {
+      font-family: var(--mono);
+      font-size: 11px;
+      background: rgba(139, 92, 246, 0.07);
+      border: 1px dashed rgba(139, 92, 246, 0.3);
+      color: #a78bfa;
+      padding: 5px 13px;
+      border-radius: 4px;
+      letter-spacing: 0.03em;
+    }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 500px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .contact-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 18px;
+      text-decoration: none;
+      display: block;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .contact-card:hover {
+      border-color: var(--border2);
+      transform: translateY(-2px);
+    }
+
+    .contact-card-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text3);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .contact-card-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .open-to-work-banner {
+      background: rgba(0, 229, 160, 0.05);
+      border: 1px solid rgba(0, 229, 160, 0.18);
+      border-radius: 10px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .otw-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .otw-desc {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text2);
+      line-height: 1.85;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 32px;
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text3);
+      letter-spacing: 0.05em;
+    }
+
+    /* Mobile nav */
+    @media (max-width: 600px) {
+      nav {
+        padding: 0 16px;
+      }
+
+      .nav-links {
+        gap: 16px;
+      }
+
+      section {
+        padding: 56px 16px;
+      }
+
+      .hero-stats {
+        gap: 24px;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" class="nav-logo">ronak.dev</a>
+    <ul class="nav-links">
+      <li><a href="#about">about</a></li>
+      <li><a href="#projects">projects</a></li>
+      <li><a href="#skills">skills</a></li>
+      <li><a href="#contact">contact</a></li>
+    </ul>
+    <div class="nav-badge">⬤ open to work</div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-grid-bg"></div>
+    <div class="hero-label">AI / ML Engineer · BVM Engineering College · Gujarat, India</div>
+    <h1 class="hero-name">Ronak Vegad</h1>
+    <div class="hero-title">Building AI systems that <span>actually work</span></div>
+    <p class="hero-desc">
+      RAG pipelines · Voice agents · OCR systems · Full-stack LLM apps<br>
+      I build end-to-end AI applications using Python, LangChain, FastAPI, and modern LLM APIs — both cloud (Groq,
+      OpenAI) and on-device (Ollama). Focus: shipping things that work, not just demos.
+    </p>
+    <div class="hero-ctas">
+      <a class="btn-primary" href="#projects">View My Work ↓</a>
+      <a class="btn-secondary" href="https://drive.google.com/file/d/1aBF_mG1yf9XoUkpc2PL5N9hGK1lDFf0f/view?usp=sharing"
+        target="_blank">Resume →</a>
+      <a class="btn-secondary" href="https://github.com/Ronak-vegad" target="_blank">GitHub →</a>
+      <a class="btn-secondary" href="https://www.linkedin.com/in/ronak-vegad-590824372/" target="_blank">LinkedIn →</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">5</div>
+        <div class="stat-label">Projects Shipped</div>
+      </div>
+      <div>
+        <div class="stat-num">3+</div>
+        <div class="stat-label">LLM Frameworks</div>
+      </div>
+      <div>
+        <div class="stat-num">Cloud + On-device</div>
+        <div class="stat-label">LLM Experience</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-header">
+      <div class="section-tag">// about.me</div>
+      <h2 class="section-title">Who I am</h2>
+    </div>
+    <div style="font-size:14px;color:var(--text2);line-height:1.9;max-width:600px;">
+      <p style="margin-bottom:16px;">I'm a final-year engineering student at BVM Engineering College, Gujarat, building
+        AI/ML systems end-to-end. My work spans RAG-based chatbots, voice agents, OCR pipelines, and full-stack LLM
+        applications.</p>
+      <p style="margin-bottom:16px;">I work with both cloud LLM APIs (Groq, OpenAI) and on-device inference (Ollama with
+        models like llama3.2 and mistral) — choosing the right tool for each project's needs around latency, cost, and
+        privacy.</p>
+      <p>I care about building things that are reliable and practical — not just impressive in a demo. Currently
+        exploring multi-agent architectures and LLM fine-tuning.</p>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-header">
+      <div class="section-tag">// projects.log</div>
+      <h2 class="section-title">What I've shipped</h2>
+    </div>
+
+    <div class="project-filters">
+      <button class="filter-btn active" onclick="filterProjects('all', this)">All</button>
+      <button class="filter-btn" onclick="filterProjects('rag', this)">RAG / LLM</button>
+      <button class="filter-btn" onclick="filterProjects('voice', this)">Voice</button>
+      <button class="filter-btn" onclick="filterProjects('ocr', this)">OCR</button>
+      <button class="filter-btn" onclick="filterProjects('fullstack', this)">Full-stack</button>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- AskBVM -->
+      <div class="project-card" data-type="rag">
+        <div class="project-card-top">
+          <div class="project-title">CollegeChatbot</div>
+          <span class="project-type-badge badge-rag">RAG / LLM</span>
+        </div>
+        <div class="project-body">
+          <p class="project-desc">RAG-powered chatbot for BVM Engineering College. Students ask any college question and
+            get accurate, sourced answers — not hallucinations.</p>
+          <div class="project-what-i-solved">
+            <div class="solved-label">⚡ what I actually solved</div>
+            <div class="solved-text">
+              Problem: College FAQs are inconsistently worded — same question phrased 10 different ways.<br>
+              Solution: Added query normalization + fuzzy matching + spell correction before retrieval. Tuned FAISS
+              similarity threshold to cut hallucinations on out-of-scope questions. Built content-aware chunking in the
+              ingest pipeline for cleaner, more accurate retrieval.
+            </div>
+          </div>
+          <div class="arch-diagram">
+            <div class="arch-flow">
+              <div class="arch-node">User Query</div>
+              <div class="arch-arrow">→</div>
+              <div class="arch-node green">Normalizer<small>fuzzy + spell</small></div>
+              <div class="arch-arrow">→</div>
+              <div class="arch-node purple">FAISS<small>nomic-embed</small></div>
+              <div class="arch-arrow">→</div>
+              <div class="arch-node blue">Ollama LLM<small>llama3.2</small></div>
+              <div class="arch-arrow">→</div>
+              <div class="arch-node green">Answer</div>
+            </div>
+          </div>
+          <div class="project-tags">
+            <span class="tag">Python</span><span class="tag">LangChain</span><span class="tag">FAISS</span><span
+              class="tag">Ollama</span><span class="tag">FastAPI</span><span class="tag">React</span><span
+              class="tag">Vite</span><span class="tag">nomic-embed-text</span>
+          </div>
+          <div class="project-links">
+            <!-- UPDATE THIS LINK to your actual AskBVM repo URL -->
+            <a class="proj-link" href="https://github.com/Ronak-vegad" target="_blank">⬡ GitHub Repo</a>
+            <!-- If you have a demo video, add it here: -->
+            <!-- <a class="proj-link demo" href="YOUR_DEMO_LINK" target="_blank">▶ Demo Video</a> -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Voice AI Agent -->
+      <div class="project-card" data-type="voice">
+        <div class="project-card-top">
+          <div class="project-title">Voice AI Agent</div>
+          <span class="project-type-badge badge-voice">Voice</span>
+        </div>
+        <div class="project-body">
+          <p class="project-desc">Voice-controlled AI agent built during internship at Mem0 AI. Fully on-device
+            inference pipeline — speech-to-text, reasoning, and speech output without sending data to the cloud.</p>
+          <div class="project-what-i-solved">
+            <div class="solved-label">⚡ what I actually solved</div>
+            <div class="solved-text">
+              Problem: Most voice agents depend on cloud APIs — adds latency and exposes user data.<br>
+              Solution: Full pipeline on-device using faster-whisper for speech-to-text (GPU-accelerated), llama3.2:3b
+              via Ollama for reasoning, and TTS output. Under 2s response time on consumer hardware. Delivered as a
+              Substack article + demo video.
+            </div>
+          </div>
+          <div class="arch-diagram">
+            <div class="arch-flow">
+              <div class="arch-node">Mic Input</div>
+              <div class="arch-arrow">→</div>
+              <div class="arch-node blue">faster-whisper<small>STT on-device</small></div>
+              <div class="arch-arrow">→</div>
+              <div class="arch-node purple">llama3.2:3b<small>via Ollama</small></div>
+              <div class="arch-arrow">→</div>
+              <div class="arch-node green">TTS Output<small>on-device</small></div>
+            </div>
+          </div>
+          <div class="project-tags">
+            <span class="tag">Python</span><span class="tag">faster-whisper</span><span class="tag">Ollama</span><span
+              class="tag">Streamlit</span><span class="tag">Mem0</span>
+          </div>
+          <div class="project-links">
+            <!-- UPDATE THIS LINK to your actual repo URL -->
+            <a class="proj-link" href="https://github.com/Ronak-vegad" target="_blank">⬡ GitHub Repo</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Chatbot ReAct -->
+      <div class="project-card" data-type="fullstack">
+        <div class="project-card-top">
+          <div class="project-title">AI Chatbot — ReAct Agent</div>
+          <span class="project-type-badge badge-full">Full-stack</span>
+        </div>
+        <div class="project-body">
+          <p class="project-desc">Full-stack ChatGPT-style AI chatbot with file upload, persistent memory, and a ReAct
+            agent that reasons step-by-step before responding — not just next-token generation.</p>
+          <div class="project-what-i-solved">
+            <div class="solved-label">⚡ what I actually solved</div>
+            <div class="solved-text">
+              Problem: Basic chatbots have no memory across sessions and can't work with user-uploaded files.<br>
+              Solution: ReAct architecture (Reason → Act → Observe loop) with ChromaDB for persistent vector memory
+              across sessions. File upload → embed → retrieve on demand. FastAPI backend, React frontend.
+            </div>
+          </div>
+          <div class="arch-diagram">
+            <div class="arch-flow">
+              <div class="arch-node">User + File</div>
+              <div class="arch-arrow">→</div>
+              <div class="arch-node purple">ReAct Agent<small>reason + act</small></div>
+              <div class="arch-arrow">→</div>
+              <div class="arch-node blue">ChromaDB<small>vector memory</small></div>
+              <div class="arch-arrow">→</div>
+              <div class="arch-node green">LLM Response</div>
+            </div>
+          </div>
+          <div class="project-tags">
+            <span class="tag">React</span><span class="tag">FastAPI</span><span class="tag">LangChain</span><span
+              class="tag">ChromaDB</span><span class="tag">Ollama</span>
+          </div>
+          <div class="project-links">
+            <a class="proj-link" href="https://github.com/Ronak-vegad" target="_blank">⬡ GitHub Repo</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- SmartBilling -->
+      <div class="project-card" data-type="ocr">
+        <div class="project-card-top">
+          <div class="project-title">SmartBilling</div>
+          <span class="project-type-badge badge-ocr">OCR</span>
+        </div>
+        <div class="project-body">
+          <p class="project-desc">OCR-powered billing automation. Upload an invoice PDF → AI extracts all structured
+            data → stores it in a local encrypted database. End-to-end billing pipeline.</p>
+          <div class="project-what-i-solved">
+            <div class="solved-label">⚡ what I actually solved</div>
+            <div class="solved-text">
+              Problem: OCR alone is inaccurate on messy or varied invoice formats; cloud solutions raise privacy
+              concerns.<br>
+              Solution: Two-stage pipeline — PaddleOCR for text extraction (stage 1), local LLM for structured parsing
+              and error correction (stage 2). SQLite with encryption for secure storage.
+            </div>
+          </div>
+          <div class="arch-diagram">
+            <div class="arch-flow">
+              <div class="arch-node">Invoice PDF</div>
+              <div class="arch-arrow">→</div>
+              <div class="arch-node orange">PaddleOCR<small>text extraction</small></div>
+              <div class="arch-arrow">→</div>
+              <div class="arch-node purple">Local LLM<small>parse + fix</small></div>
+              <div class="arch-arrow">→</div>
+              <div class="arch-node green">SQLite enc.</div>
+            </div>
+          </div>
+          <div class="project-tags">
+            <span class="tag">Python</span><span class="tag">PaddleOCR</span><span class="tag">FastAPI</span><span
+              class="tag">SQLite</span><span class="tag">SQLAlchemy</span>
+          </div>
+          <div class="project-links">
+            <a class="proj-link" href="https://github.com/Ronak-vegad" target="_blank">⬡ GitHub Repo</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resume Parser Pro -->
+      <div class="project-card" data-type="fullstack">
+        <div class="project-card-top">
+          <div class="project-title">Resume Parser Pro</div>
+          <span class="project-type-badge badge-full">Full-stack</span>
+        </div>
+        <div class="project-body">
+          <p class="project-desc">Intelligent resume parser with a two-page upload-and-review flow. Drop a PDF → AI
+            extracts structured skills, experience, and project data — clean UI for review before export.</p>
+          <div class="project-what-i-solved">
+            <div class="solved-label">⚡ what I actually solved</div>
+            <div class="solved-text">
+              Problem: Resumes come in wildly different layouts and formats — naive parsing breaks on most of them.<br>
+              Solution: LLM-powered extraction that handles layout variance. Structured JSON output with a clean
+              two-step review UI before the user exports the data.
+            </div>
+          </div>
+          <div class="project-tags">
+            <span class="tag">React</span><span class="tag">FastAPI</span><span class="tag">Python</span><span
+              class="tag">PDF parsing</span>
+          </div>
+          <div class="project-links">
+            <a class="proj-link" href="https://github.com/Ronak-vegad" target="_blank">⬡ GitHub Repo</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-header">
+      <div class="section-tag">// tech.stack</div>
+      <h2 class="section-title">Skills — proved, not scored</h2>
+    </div>
+
+    <div class="skills-philosophy">
+      No star ratings. Every skill below is shown with where I actually used it.<br>
+      I work with both cloud APIs (Groq, OpenAI) and on-device LLMs (Ollama) — the right tool for the right job.
+    </div>
+
+    <div class="skills-grid">
+
+      <div class="skill-domain">
+        <div class="skill-domain-title">
+          <div class="domain-icon" style="background:rgba(0,229,160,0.1)">🧠</div>
+          AI / ML Core
+        </div>
+        <div class="skill-item">
+          <div class="skill-dot"></div>
+          <div>
+            <div class="skill-name">Python</div>
+            <div class="skill-proof">All 5 projects — primary language throughout</div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-dot"></div>
+          <div>
+            <div class="skill-name">LangChain</div>
+            <div class="skill-proof">AskBVM, AI Chatbot — RAG chains, ReAct agents</div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-dot"></div>
+          <div>
+            <div class="skill-name">RAG Pipelines</div>
+            <div class="skill-proof">AskBVM — query normalization, chunking, retrieval tuning</div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-dot"></div>
+          <div>
+            <div class="skill-name">FAISS / ChromaDB</div>
+            <div class="skill-proof">FAISS in AskBVM · ChromaDB in AI Chatbot</div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-dot"></div>
+          <div>
+            <div class="skill-name">ReAct Agents</div>
+            <div class="skill-proof">AI Chatbot — reason + act loop with persistent memory</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-domain">
+        <div class="skill-domain-title">
+          <div class="domain-icon" style="background:rgba(139,92,246,0.1)">⚙️</div>
+          LLMs & APIs
+        </div>
+        <div class="skill-item">
+          <div class="skill-dot purple"></div>
+          <div>
+            <div class="skill-name">Ollama (on-device LLMs)</div>
+            <div class="skill-proof">AskBVM, Voice Agent, AI Chatbot — llama3.2, mistral</div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-dot purple"></div>
+          <div>
+            <div class="skill-name">Groq API</div>
+            <div class="skill-proof">Cloud inference for low-latency LLM calls</div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-dot purple"></div>
+          <div>
+            <div class="skill-name">OpenAI API</div>
+            <div class="skill-proof">GPT models for cloud-based chatbot features</div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-dot purple"></div>
+          <div>
+            <div class="skill-name">Hugging Face</div>
+            <div class="skill-proof">Model exploration, embedding models</div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-dot purple"></div>
+          <div>
+            <div class="skill-name">faster-whisper</div>
+            <div class="skill-proof">Voice Agent — GPU-accelerated speech-to-text</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-domain">
+        <div class="skill-domain-title">
+          <div class="domain-icon" style="background:rgba(0,149,255,0.1)">🔧</div>
+          Backend & APIs
+        </div>
+        <div class="skill-item">
+          <div class="skill-dot blue"></div>
+          <div>
+            <div class="skill-name">FastAPI</div>
+            <div class="skill-proof">AskBVM, SmartBilling, AI Chatbot, Resume Parser</div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-dot blue"></div>
+          <div>
+            <div class="skill-name">REST API Design</div>
+            <div class="skill-proof">All backend projects — structured endpoint design</div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-dot blue"></div>
+          <div>
+            <div class="skill-name">SQLite / PostgreSQL</div>
+            <div class="skill-proof">SmartBilling — encrypted SQLite storage</div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-dot blue"></div>
+          <div>
+            <div class="skill-name">React / Vite</div>
+            <div class="skill-proof">AskBVM, AI Chatbot, Resume Parser — frontend</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-domain">
+        <div class="skill-domain-title">
+          <div class="domain-icon" style="background:rgba(251,146,60,0.1)">👁️</div>
+          OCR & Vision
+        </div>
+        <div class="skill-item">
+          <div class="skill-dot orange"></div>
+          <div>
+            <div class="skill-name">PaddleOCR</div>
+            <div class="skill-proof">SmartBilling — stage 1 invoice text extraction</div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-dot orange"></div>
+          <div>
+            <div class="skill-name">Tesseract OCR</div>
+            <div class="skill-proof">Early billing pipeline — layout detection</div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-dot orange"></div>
+          <div>
+            <div class="skill-name">Git & GitHub</div>
+            <div class="skill-proof">All projects — version control and collaboration</div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-dot orange"></div>
+          <div>
+            <div class="skill-name">Streamlit</div>
+            <div class="skill-proof">Voice Agent — rapid UI for demo and internship delivery</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="learning-section">
+      <div class="skill-domain-title" style="margin-bottom:0">
+        <div class="domain-icon" style="background:rgba(139,92,246,0.08)">📡</div>
+        Currently exploring
+      </div>
+      <div class="learning-items">
+        <span class="learning-item">Fine-tuning LLMs</span>
+        <span class="learning-item">Multi-modal Models</span>
+        <span class="learning-item">CrewAI / Multi-agent</span>
+        <span class="learning-item">Graph RAG</span>
+        <span class="learning-item">MCP Servers</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-header">
+      <div class="section-tag">// contact</div>
+      <h2 class="section-title">Let's build something</h2>
+    </div>
+
+    <div class="contact-grid">
+      <a class="contact-card" href="mailto:vegadronak03@gmail.com">
+        <div class="contact-card-label">Email</div>
+        <div class="contact-card-value">vegadronak03@gmail.com</div>
+      </a>
+      <a class="contact-card" href="https://www.linkedin.com/in/ronak-vegad-590824372/" target="_blank">
+        <div class="contact-card-label">LinkedIn</div>
+        <div class="contact-card-value">ronak-vegad →</div>
+      </a>
+      <a class="contact-card" href="https://github.com/Ronak-vegad" target="_blank">
+        <div class="contact-card-label">GitHub</div>
+        <div class="contact-card-value">Ronak-vegad →</div>
+      </a>
+      <a class="contact-card" href="https://drive.google.com/file/d/1aBF_mG1yf9XoUkpc2PL5N9hGK1lDFf0f/view?usp=sharing"
+        target="_blank">
+        <div class="contact-card-label">Resume</div>
+        <div class="contact-card-value">Download PDF →</div>
+      </a>
+    </div>
+
+    <div class="open-to-work-banner">
+      <div class="otw-title">⬤ Open to Work — Fresher AI/ML Engineer</div>
+      <div class="otw-desc">
+        Looking for internships, full-time roles, and ambitious freelance AI/ML projects.<br>
+        I build AI systems end-to-end — RAG, agents, OCR, APIs. If you need AI that ships, let's talk.
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Ronak Vegad — AI / ML Engineer
+  </footer>
+
+  <script>
+    function filterProjects(type, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.project-card').forEach(card => {
+        if (type === 'all' || card.dataset.type === type) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+
+</body>
+
+</html>
