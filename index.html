@@ -1,1290 +1,2371 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
-    content="Portfolio of Ronak Vegad — AI/ML engineer building RAG pipelines, voice agents, OCR systems, and full-stack LLM applications.">
-  <title>Ronak Vegad — AI / ML Engineer</title>
+    content="Ronak Vegad - AI/ML Engineer Portfolio showcasing RAG pipelines, voice agents, OCR systems, and full-stack LLM applications." />
+  <title>Ronak Vegad | AI / ML Engineer</title>
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@400;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
     rel="stylesheet">
+
   <style>
-    *,
-    *::before,
-    *::after {
+    :root {
+      /* Dark Theme variables by default */
+      --primary: 0 0% 100%;
+      --primary-foreground: 0 0% 0%;
+      --secondary: 0 0% 85%;
+      --secondary-foreground: 0 0% 0%;
+      --accent: 14 100% 50%;
+      /* Vibrant Orange/Vermillion HSL */
+      --accent-foreground: 0 0% 100%;
+      --background: 0 0% 3%;
+      --foreground: 0 0% 98%;
+      --card: 0 0% 6%;
+      --card-foreground: 0 0% 98%;
+      --muted: 0 0% 10%;
+      --muted-foreground: 0 0% 65%;
+      --border: 0 0% 14%;
+      --input: 0 0% 14%;
+      --ring: 14 100% 50%;
+      --radius: 12px;
+
+      --success: 142 70% 45%;
+      --success-foreground: 0 0% 100%;
+      --error: 0 74% 65%;
+      --error-foreground: 0 0% 100%;
+
+      --font-display: "Inter Tight", sans-serif;
+      --font-body: "Inter", sans-serif;
+      --font-mono: "JetBrains Mono", monospace;
+    }
+
+    .light {
+      /* Light Theme overrides */
+      --primary: 0 0% 0%;
+      --primary-foreground: 0 0% 100%;
+      --secondary: 0 0% 15%;
+      --secondary-foreground: 0 0% 100%;
+      --background: 0 0% 98%;
+      --foreground: 0 0% 5%;
+      --card: 0 0% 100%;
+      --card-foreground: 0 0% 5%;
+      --muted: 0 0% 94%;
+      --muted-foreground: 0 0% 40%;
+      --border: 0 0% 88%;
+      --input: 0 0% 88%;
+    }
+
+    * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-    }
-
-    :root {
-      --bg: #080c12;
-      --bg2: #0d1420;
-      --bg3: #111927;
-      --border: rgba(255, 255, 255, 0.07);
-      --border2: rgba(255, 255, 255, 0.12);
-      --accent: #00e5a0;
-      --accent2: #0095ff;
-      --accent3: #8b5cf6;
-      --text: #e8edf5;
-      --text2: #8a9ab8;
-      --text3: #4a5a78;
-      --mono: 'JetBrains Mono', monospace;
-      --sans: 'Syne', sans-serif;
-      --tag-bg: rgba(0, 229, 160, 0.08);
-      --tag-border: rgba(0, 229, 160, 0.2);
-    }
-
-    html {
       scroll-behavior: smooth;
+      border-color: hsl(var(--border));
     }
 
     body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--sans);
-      font-size: 14px;
-      line-height: 1.6;
+      background-color: hsl(var(--background));
+      color: hsl(var(--foreground));
+      font-family: var(--font-body);
+      line-height: 1.5;
       overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
-    /* NAV */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(8, 12, 18, 0.85);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 32px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 52px;
-    }
-
-    .nav-logo {
-      font-family: var(--mono);
-      font-size: 13px;
-      color: var(--accent);
-      letter-spacing: 0.05em;
-      text-decoration: none;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-family: var(--mono);
-      font-size: 12px;
-      color: var(--text2);
-      text-decoration: none;
-      letter-spacing: 0.05em;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover {
-      color: var(--accent);
-    }
-
-    .nav-badge {
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--accent);
-      border: 1px solid var(--accent);
-      padding: 3px 10px;
-      border-radius: 20px;
-      background: rgba(0, 229, 160, 0.05);
-      animation: pulse-badge 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse-badge {
-
-      0%,
-      100% {
-        box-shadow: 0 0 0 0 rgba(0, 229, 160, 0.2);
-      }
-
-      50% {
-        box-shadow: 0 0 0 5px rgba(0, 229, 160, 0);
-      }
-    }
-
-    /* SECTIONS */
-    section {
-      padding: 72px 32px;
-      max-width: 880px;
-      margin: 0 auto;
-    }
-
-    /* HERO */
-    #hero {
-      padding-top: 80px;
-      padding-bottom: 88px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-grid-bg {
+    /* Grid Texture overlay background */
+    .grid-bg {
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(rgba(0, 229, 160, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 229, 160, 0.03) 1px, transparent 1px);
+        linear-gradient(to right, rgba(120, 120, 120, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(120, 120, 120, 0.05) 1px, transparent 1px);
       background-size: 40px 40px;
-      mask-image: radial-gradient(ellipse at 50% 0%, black 40%, transparent 80%);
-      -webkit-mask-image: radial-gradient(ellipse at 50% 0%, black 40%, transparent 80%);
       pointer-events: none;
+      z-index: 1;
     }
 
-    .hero-label {
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--accent);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    .container {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
     }
 
-    .hero-label::before {
-      content: '';
-      display: inline-block;
-      width: 24px;
-      height: 1px;
-      background: var(--accent);
-    }
-
-    .hero-name {
-      font-size: clamp(36px, 6vw, 56px);
-      font-weight: 800;
-      line-height: 1.05;
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: var(--font-display);
+      font-weight: 700;
       letter-spacing: -0.02em;
-      margin-bottom: 14px;
-      background: linear-gradient(135deg, #fff 30%, #8a9ab8 100%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Scroll animations classes */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Gradient typography text */
+    .gradient-text {
+      background: linear-gradient(135deg, hsl(var(--primary)) 30%, hsl(var(--accent)) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
 
-    .hero-title {
-      font-size: 18px;
-      font-weight: 600;
-      color: var(--text2);
-      margin-bottom: 20px;
+    /* Header Nav Styling */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      transition: all 0.3s ease;
+      background-color: transparent;
     }
 
-    .hero-title span {
-      color: var(--accent);
+    header.scrolled {
+      background-color: transparent;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid hsl(var(--border));
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
     }
 
-    .hero-desc {
-      font-family: var(--mono);
-      font-size: 13px;
-      color: var(--text2);
-      max-width: 540px;
-      line-height: 1.9;
-      margin-bottom: 32px;
-      border-left: 2px solid var(--accent);
-      padding-left: 16px;
+    header.scrolled-bg-dark {
+      background-color: rgba(3, 3, 3, 0.8);
     }
 
-    .hero-ctas {
+    header.scrolled-bg-light {
+      background-color: rgba(250, 250, 250, 0.8);
+    }
+
+    .nav {
       display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
       align-items: center;
-      margin-bottom: 44px;
+      justify-content: space-between;
+      height: 4.5rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 800;
+      font-size: 1.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-family: var(--font-display);
+    }
+
+    .logo .accent-letter {
+      color: hsl(var(--accent));
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: hsl(var(--foreground) / 0.8);
+      transition: color 0.2s ease;
+      position: relative;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: hsl(var(--accent));
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 100%;
+      height: 2px;
+      background-color: hsl(var(--accent));
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    /* Button styles */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.875rem;
+      font-weight: 600;
+      padding: 0.625rem 1.25rem;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      font-family: var(--font-body);
+      border: 1px solid transparent;
     }
 
     .btn-primary {
-      font-family: var(--mono);
-      font-size: 12px;
-      background: var(--accent);
-      color: #080c12;
-      border: none;
-      padding: 11px 22px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-decoration: none;
-      display: inline-block;
-      transition: all 0.2s;
+      background-color: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
     }
 
     .btn-primary:hover {
-      background: #00ffb3;
-      transform: translateY(-1px);
+      background-color: hsl(var(--primary) / 0.9);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .dark .btn-primary:hover {
+      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
     }
 
     .btn-secondary {
-      font-family: var(--mono);
-      font-size: 12px;
-      background: transparent;
-      color: var(--text2);
-      border: 1px solid var(--border2);
-      padding: 11px 22px;
-      border-radius: 6px;
-      cursor: pointer;
-      letter-spacing: 0.05em;
-      text-decoration: none;
-      display: inline-block;
-      transition: all 0.2s;
+      background-color: transparent;
+      border-color: hsl(var(--border));
+      color: hsl(var(--foreground));
     }
 
     .btn-secondary:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    .hero-stats {
-      display: flex;
-      gap: 40px;
-      border-top: 1px solid var(--border);
-      padding-top: 32px;
-      flex-wrap: wrap;
-    }
-
-    .stat-num {
-      font-size: 30px;
-      font-weight: 800;
-      color: var(--accent);
-    }
-
-    .stat-label {
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--text3);
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      margin-top: 2px;
-    }
-
-    /* SECTION HEADER */
-    .section-header {
-      margin-bottom: 36px;
-    }
-
-    .section-tag {
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--text3);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-
-    .section-title {
-      font-size: 28px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-    }
-
-    /* PROJECTS */
-    .project-filters {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 28px;
-      flex-wrap: wrap;
-    }
-
-    .filter-btn {
-      font-family: var(--mono);
-      font-size: 11px;
-      border: 1px solid var(--border2);
-      background: transparent;
-      color: var(--text2);
-      padding: 6px 14px;
-      border-radius: 4px;
-      cursor: pointer;
-      letter-spacing: 0.05em;
-      transition: all 0.2s;
-    }
-
-    .filter-btn.active,
-    .filter-btn:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: rgba(0, 229, 160, 0.05);
-    }
-
-    .projects-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .project-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-
-    .project-card:hover {
-      border-color: var(--border2);
+      background-color: hsl(var(--muted));
+      border-color: hsl(var(--foreground));
       transform: translateY(-2px);
     }
 
-    .project-card-top {
-      padding: 20px 20px 0;
+    .btn-accent {
+      background-color: hsl(var(--accent));
+      color: hsl(var(--accent-foreground));
+    }
+
+    .btn-accent:hover {
+      background-color: hsl(var(--accent) / 0.9);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px hsl(var(--accent) / 0.2);
+    }
+
+    .btn-ghost {
+      background-color: transparent;
+      color: hsl(var(--foreground) / 0.8);
+      padding: 0.5rem;
+      border-radius: 50%;
+    }
+
+    .btn-ghost:hover {
+      background-color: hsl(var(--muted));
+      color: hsl(var(--foreground));
+    }
+
+    /* Mobile Nav Toggle */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: hsl(var(--foreground));
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    /* Sections */
+    section {
+      position: relative;
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+      border-bottom: 1px solid hsl(var(--border));
+      overflow: hidden;
+    }
+
+    /* Section Headings */
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-title {
+      font-size: 2.25rem;
+      font-weight: 800;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 0.75rem;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 3.5rem;
+      height: 3px;
+      background-color: hsl(var(--accent));
+      border-radius: 2px;
+    }
+
+    .section-subtitle {
+      color: hsl(var(--muted-foreground));
+      margin-top: 1rem;
+      font-size: 1.125rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Ambient glow backgrounds */
+    .glow-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.15;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Hero Section */
+    #hero {
+      min-h-screen: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 9rem;
+      padding-bottom: 6rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .hero-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      color: hsl(var(--accent));
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .hero-kicker::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background-color: hsl(var(--accent));
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      line-height: 1.05;
+      font-weight: 900;
+    }
+
+    .hero-subtitle-italic {
+      font-style: italic;
+      font-weight: 400;
+      color: hsl(var(--muted-foreground));
+    }
+
+    .hero-lead {
+      font-size: 1.125rem;
+      color: hsl(var(--muted-foreground));
+      max-width: 600px;
+      line-height: 1.6;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    /* Hero Right - Photo Spot (Empty space/placeholder per user request) */
+    .hero-image-container {
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-image-placeholder {
+      aspect-ratio: 1 / 1;
+      width: 100%;
+      border-radius: var(--radius);
+      border: 2px dashed hsl(var(--border));
+      background-color: hsl(var(--card));
+      position: relative;
+      z-index: 10;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: hsl(var(--muted-foreground));
+      gap: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .hero-image-placeholder::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(45deg, hsl(var(--accent) / 0.05) 25%, transparent 25%),
+        linear-gradient(-45deg, hsl(var(--accent) / 0.05) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, hsl(var(--accent) / 0.05) 75%),
+        linear-gradient(-45deg, transparent 75%, hsl(var(--accent) / 0.05) 75%);
+      background-size: 20px 20px;
+      z-index: 1;
+    }
+
+    .hero-image-placeholder svg {
+      width: 3.5rem;
+      height: 3.5rem;
+      color: hsl(var(--accent) / 0.4);
+      z-index: 2;
+    }
+
+    .hero-image-placeholder span {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      z-index: 2;
+    }
+
+    .hero-image-container::before {
+      content: '';
+      position: absolute;
+      inset: -10px;
+      border-radius: calc(var(--radius) + 10px);
+      background: linear-gradient(135deg, hsl(var(--primary) / 0.1) 0%, hsl(var(--accent) / 0.1) 100%);
+      z-index: 5;
+      filter: blur(10px);
+    }
+
+    /* About Section */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-image-placeholder {
+      aspect-ratio: 1.2 / 1;
+      width: 100%;
+      border-radius: var(--radius);
+      border: 2px dashed hsl(var(--border));
+      background-color: hsl(var(--card));
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: hsl(var(--muted-foreground));
+      gap: 1rem;
+    }
+
+    .about-image-placeholder svg {
+      width: 3rem;
+      height: 3rem;
+      color: hsl(var(--accent) / 0.4);
+    }
+
+    .about-image-placeholder span {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .about-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .about-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+    }
+
+    .about-text {
+      color: hsl(var(--muted-foreground));
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .about-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    .about-card {
+      background-color: hsl(var(--card));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .about-card:hover {
+      background-color: hsl(var(--muted) / 0.5);
+      border-color: hsl(var(--accent));
+      transform: translateY(-2px);
+    }
+
+    .about-card-icon {
+      color: hsl(var(--accent));
+      margin-bottom: 0.25rem;
+    }
+
+    .about-card-title {
+      font-size: 1.125rem;
+      font-weight: 700;
+    }
+
+    .about-card-desc {
+      color: hsl(var(--muted-foreground));
+      font-size: 0.875rem;
+      line-height: 1.4;
+    }
+
+    /* Terminal & Stats Section Overlay Grid */
+    .hero-info-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-top: 4rem;
+      width: 100%;
+    }
+
+    .terminal-card {
+      background-color: hsl(var(--card));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      position: relative;
+    }
+
+    .terminal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid hsl(var(--border));
+      padding-bottom: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .terminal-dots {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .terminal-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .terminal-dot.red {
+      background-color: #ef4444;
+    }
+
+    .terminal-dot.yellow {
+      background-color: #eab308;
+    }
+
+    .terminal-dot.green {
+      background-color: #22c55e;
+    }
+
+    .terminal-title {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: hsl(var(--muted-foreground));
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .terminal-status {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: hsl(var(--success));
+    }
+
+    .terminal-content {
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+
+    .terminal-cmd {
+      color: hsl(var(--muted-foreground));
+      margin-bottom: 0.5rem;
+    }
+
+    .stats-card {
+      background-color: hsl(var(--card));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .stat-number {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: hsl(var(--accent));
+      font-family: var(--font-display);
+    }
+
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 0.675rem;
+      color: hsl(var(--muted-foreground));
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Projects Section Filters */
+    .filter-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-tab {
+      background-color: hsl(var(--muted));
+      color: hsl(var(--foreground) / 0.7);
+      border: 1px solid hsl(var(--border));
+      border-radius: 9999px;
+      padding: 0.5rem 1.25rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .filter-tab:hover {
+      background-color: hsl(var(--border));
+      color: hsl(var(--foreground));
+    }
+
+    .filter-tab.active {
+      background-color: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+      border-color: hsl(var(--primary));
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+
+    .project-card {
+      background-color: hsl(var(--card));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .project-card:hover {
+      border-color: hsl(var(--accent));
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .dark .project-card:hover {
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .project-image-container {
+      aspect-ratio: 16 / 9;
+      width: 100%;
+      border-bottom: 1px solid hsl(var(--border));
+      position: relative;
+      overflow: hidden;
+      background-color: hsl(var(--muted));
+    }
+
+    .project-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .project-card:hover .project-img {
+      transform: scale(1.05);
+    }
+
+    .project-info {
+      padding: 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .project-header-row {
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
-      gap: 12px;
-    }
-
-    .project-type-badge {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 4px 10px;
-      border-radius: 4px;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-
-    .badge-rag {
-      background: rgba(139, 92, 246, 0.12);
-      color: #a78bfa;
-      border: 1px solid rgba(139, 92, 246, 0.25);
-    }
-
-    .badge-voice {
-      background: rgba(0, 149, 255, 0.12);
-      color: #60b8ff;
-      border: 1px solid rgba(0, 149, 255, 0.25);
-    }
-
-    .badge-ocr {
-      background: rgba(251, 146, 60, 0.12);
-      color: #fb923c;
-      border: 1px solid rgba(251, 146, 60, 0.25);
-    }
-
-    .badge-full {
-      background: rgba(0, 229, 160, 0.10);
-      color: var(--accent);
-      border: 1px solid rgba(0, 229, 160, 0.2);
+      gap: 1rem;
     }
 
     .project-title {
-      font-size: 18px;
+      font-size: 1.25rem;
       font-weight: 700;
-      letter-spacing: -0.01em;
-      margin-bottom: 8px;
+      color: hsl(var(--foreground));
     }
 
-    .project-body {
-      padding: 0 20px 20px;
+    .project-tag {
+      font-family: var(--font-mono);
+      font-size: 0.675rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border: 1px solid hsl(var(--border));
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      color: hsl(var(--muted-foreground));
+      background-color: hsl(var(--muted) / 0.3);
+      white-space: nowrap;
     }
 
     .project-desc {
-      font-size: 13px;
-      color: var(--text2);
-      line-height: 1.75;
-      margin: 10px 0 12px;
-    }
-
-    .project-what-i-solved {
-      background: rgba(0, 229, 160, 0.05);
-      border: 1px solid rgba(0, 229, 160, 0.12);
-      border-radius: 8px;
-      padding: 12px 14px;
-      margin: 12px 0;
-    }
-
-    .solved-label {
-      font-family: var(--mono);
-      font-size: 10px;
-      color: var(--accent);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-
-    .solved-text {
-      font-family: var(--mono);
-      font-size: 12px;
-      color: var(--text2);
-      line-height: 1.8;
-    }
-
-    /* Architecture flow */
-    .arch-diagram {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 14px 16px;
-      margin: 12px 0;
-      overflow-x: auto;
-    }
-
-    .arch-flow {
-      display: flex;
-      align-items: center;
-      gap: 0;
-      min-width: max-content;
-    }
-
-    .arch-node {
-      background: var(--bg2);
-      border: 1px solid var(--border2);
-      border-radius: 6px;
-      padding: 7px 11px;
-      font-family: var(--mono);
-      font-size: 10px;
-      white-space: nowrap;
-      color: var(--text);
-      text-align: center;
+      color: hsl(var(--muted-foreground));
+      font-size: 0.935rem;
       line-height: 1.5;
-      flex-shrink: 0;
     }
 
-    .arch-node small {
-      display: block;
-      font-size: 9px;
-      color: var(--text3);
-      margin-top: 1px;
-    }
 
-    .arch-node.green {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: rgba(0, 229, 160, 0.06);
-    }
-
-    .arch-node.purple {
-      border-color: #a78bfa;
-      color: #a78bfa;
-      background: rgba(139, 92, 246, 0.06);
-    }
-
-    .arch-node.blue {
-      border-color: #60b8ff;
-      color: #60b8ff;
-      background: rgba(0, 149, 255, 0.06);
-    }
-
-    .arch-node.orange {
-      border-color: #fb923c;
-      color: #fb923c;
-      background: rgba(251, 146, 60, 0.06);
-    }
-
-    .arch-arrow {
-      color: var(--text3);
-      font-size: 13px;
-      padding: 0 5px;
-      flex-shrink: 0;
-    }
 
     .project-tags {
       display: flex;
-      gap: 6px;
       flex-wrap: wrap;
-      margin-top: 14px;
+      gap: 0.5rem;
     }
 
-    .tag {
-      font-family: var(--mono);
-      font-size: 10px;
-      background: var(--tag-bg);
-      border: 1px solid var(--tag-border);
-      color: var(--accent);
-      padding: 3px 9px;
-      border-radius: 4px;
-      letter-spacing: 0.03em;
+    .project-tech-tag {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      background-color: hsl(var(--muted));
+      border: 1px solid hsl(var(--border));
+      padding: 0.25rem 0.5rem;
+      border-radius: 9999px;
+      color: hsl(var(--muted-foreground));
+      transition: all 0.2s ease;
+    }
+
+    .project-card:hover .project-tech-tag {
+      border-color: hsl(var(--border));
+      color: hsl(var(--foreground));
     }
 
     .project-links {
       display: flex;
-      gap: 14px;
-      margin-top: 14px;
-      padding-top: 14px;
-      border-top: 1px solid var(--border);
+      gap: 1.25rem;
+      border-top: 1px solid hsl(var(--border));
+      padding: 1.25rem 1.5rem;
+      background-color: hsl(var(--muted) / 0.1);
     }
 
-    .proj-link {
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--text2);
-      text-decoration: none;
+    .project-link {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
       display: inline-flex;
       align-items: center;
-      gap: 5px;
-      transition: color 0.2s;
-      letter-spacing: 0.03em;
+      gap: 0.35rem;
+      color: hsl(var(--foreground) / 0.8);
+      position: relative;
     }
 
-    .proj-link:hover {
-      color: var(--accent);
+    .project-link:hover {
+      color: hsl(var(--accent));
     }
 
-    .proj-link.demo {
-      color: var(--accent);
-    }
-
-    .proj-link.demo:hover {
-      color: #00ffb3;
-    }
-
-    /* SKILLS */
-    .skills-philosophy {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-left: 3px solid var(--accent);
-      border-radius: 8px;
-      padding: 14px 16px;
-      font-family: var(--mono);
-      font-size: 12px;
-      color: var(--text2);
-      margin-bottom: 28px;
-      line-height: 1.7;
-    }
-
+    /* Skills Grid Layout */
     .skills-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 2rem;
     }
 
-    @media (max-width: 600px) {
-      .skills-grid {
-        grid-template-columns: 1fr;
-      }
+    .skills-category-card {
+      background-color: hsl(var(--card));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--radius);
+      padding: 2rem;
+      transition: all 0.3s ease;
     }
 
-    .skill-domain {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 16px;
+    .skills-category-card:hover {
+      border-color: hsl(var(--accent) / 0.5);
+      transform: translateY(-2px);
     }
 
-    .skill-domain-title {
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--text3);
-      margin-bottom: 14px;
+    /* Grid layout positioning for 3 on top, 2 on bottom */
+    .skills-category-card:nth-child(1),
+    .skills-category-card:nth-child(2),
+    .skills-category-card:nth-child(3) {
+      grid-column: span 2;
+    }
+
+    .skills-category-card:nth-child(4) {
+      grid-column: 2 / span 2;
+    }
+
+    .skills-category-card:nth-child(5) {
+      grid-column: 4 / span 2;
+    }
+
+    .skills-category-header {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 0.75rem;
+      border-bottom: 1px solid hsl(var(--border));
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
     }
 
-    .domain-icon {
-      width: 22px;
-      height: 22px;
-      border-radius: 4px;
+    .skills-category-icon {
+      padding: 0.5rem;
+      border-radius: 8px;
+      background-color: hsl(var(--accent) / 0.1);
+      color: hsl(var(--accent));
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 12px;
+    }
+
+    .skills-category-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+    }
+
+    .skills-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      list-style: none;
     }
 
     .skill-item {
       display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      padding: 9px 0;
-      border-bottom: 1px solid var(--border);
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.5rem 0.75rem;
+      background-color: hsl(var(--muted) / 0.2);
+      border: 1px solid hsl(var(--border) / 0.5);
+      border-radius: 6px;
+      transition: all 0.2s ease;
     }
 
-    .skill-item:last-child {
-      border-bottom: none;
+    .skill-item:hover {
+      background-color: hsl(var(--accent) / 0.05);
+      border-color: hsl(var(--accent) / 0.3);
+      transform: translateX(4px);
     }
 
     .skill-name {
-      font-size: 13px;
       font-weight: 600;
-      flex: 1;
-      min-width: 0;
+      font-size: 0.935rem;
+      color: hsl(var(--foreground));
     }
 
-    .skill-proof {
-      font-family: var(--mono);
-      font-size: 10px;
-      color: var(--text3);
-      margin-top: 3px;
-      line-height: 1.6;
-    }
-
-    .skill-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      margin-top: 6px;
-      flex-shrink: 0;
-    }
-
-    .skill-dot.blue {
-      background: var(--accent2);
-    }
-
-    .skill-dot.purple {
-      background: var(--accent3);
-    }
-
-    .skill-dot.orange {
-      background: #fb923c;
-    }
-
-    .learning-section {
-      margin-top: 20px;
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 16px;
-    }
-
-    .learning-items {
+    .skill-chevron {
+      color: hsl(var(--accent));
       display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 12px;
+      align-items: center;
+      transition: transform 0.2s ease;
     }
 
-    .learning-item {
-      font-family: var(--mono);
-      font-size: 11px;
-      background: rgba(139, 92, 246, 0.07);
-      border: 1px dashed rgba(139, 92, 246, 0.3);
-      color: #a78bfa;
-      padding: 5px 13px;
-      border-radius: 4px;
-      letter-spacing: 0.03em;
+    .skill-item:hover .skill-chevron {
+      transform: scale(1.2);
     }
 
-    /* CONTACT */
+    /* Contact Section Layout */
     .contact-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin-bottom: 20px;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 4rem;
+      align-items: start;
     }
 
-    @media (max-width: 500px) {
-      .contact-grid {
-        grid-template-columns: 1fr;
+    .contact-info-column {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .contact-info-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+    }
+
+    .contact-info-text {
+      color: hsl(var(--muted-foreground));
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .contact-links-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-link-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      color: hsl(var(--foreground) / 0.9);
+      transition: color 0.2s ease;
+    }
+
+    .contact-link-item:hover {
+      color: hsl(var(--accent));
+    }
+
+    .contact-link-icon-box {
+      padding: 0.75rem;
+      border-radius: 50%;
+      background-color: hsl(var(--muted));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid hsl(var(--border));
+      transition: all 0.2s ease;
+    }
+
+    .contact-link-item:hover .contact-link-icon-box {
+      background-color: hsl(var(--accent) / 0.1);
+      border-color: hsl(var(--accent));
+      color: hsl(var(--accent));
+    }
+
+    .contact-link-label {
+      font-size: 0.935rem;
+      font-weight: 500;
+    }
+
+    /* Status Card box */
+    .status-card {
+      padding: 1.5rem;
+      background-color: hsl(var(--muted) / 0.4);
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--radius);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .status-title {
+      font-size: 1.125rem;
+      font-weight: 800;
+    }
+
+    .status-desc {
+      color: hsl(var(--muted-foreground));
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+
+    .status-pulse-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: hsl(var(--success));
+      font-size: 0.875rem;
+      font-weight: 600;
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .status-pulse-dot {
+      width: 8px;
+      height: 8px;
+      background-color: hsl(var(--success));
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+      }
+
+      70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 6px rgba(34, 197, 94, 0);
+      }
+
+      100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
       }
     }
 
-    .contact-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 16px 18px;
-      text-decoration: none;
-      display: block;
-      transition: border-color 0.2s, transform 0.2s;
+    /* Form design styling */
+    .contact-form-column {
+      background-color: hsl(var(--card));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--radius);
+      padding: 2.5rem;
     }
 
-    .contact-card:hover {
-      border-color: var(--border2);
-      transform: translateY(-2px);
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
     }
 
-    .contact-card-label {
-      font-family: var(--mono);
-      font-size: 10px;
-      color: var(--text3);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-
-    .contact-card-value {
-      font-size: 14px;
+    .form-label {
+      font-size: 0.875rem;
       font-weight: 600;
-      color: var(--text);
+      color: hsl(var(--foreground) / 0.8);
     }
 
-    .open-to-work-banner {
-      background: rgba(0, 229, 160, 0.05);
-      border: 1px solid rgba(0, 229, 160, 0.18);
-      border-radius: 10px;
-      padding: 24px;
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius);
+      background-color: hsl(var(--muted) / 0.5);
+      border: 1px solid hsl(var(--border));
+      color: hsl(var(--foreground));
+      font-family: var(--font-body);
+      font-size: 0.935rem;
+      transition: all 0.2s ease;
+      outline: none;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      border-color: hsl(var(--accent));
+      background-color: hsl(var(--muted));
+      box-shadow: 0 0 0 2px hsl(var(--accent) / 0.15);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-error {
+      color: hsl(var(--error));
+      font-size: 0.75rem;
+      margin-top: 0.25rem;
+      font-family: var(--font-mono);
+    }
+
+    .form-status-msg {
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius);
       text-align: center;
+      font-size: 0.875rem;
+      margin-top: 1rem;
+      font-weight: 500;
+      display: none;
     }
 
-    .otw-title {
-      font-size: 17px;
-      font-weight: 700;
-      color: var(--accent);
-      margin-bottom: 8px;
+    .form-status-msg.success {
+      background-color: hsl(var(--success) / 0.1);
+      color: hsl(var(--success));
+      border: 1px solid hsl(var(--success) / 0.2);
     }
 
-    .otw-desc {
-      font-family: var(--mono);
-      font-size: 12px;
-      color: var(--text2);
-      line-height: 1.85;
+    .form-status-msg.error {
+      background-color: hsl(var(--error) / 0.1);
+      color: hsl(var(--error));
+      border: 1px solid hsl(var(--error) / 0.2);
     }
 
+    /* Footer styling */
     footer {
-      border-top: 1px solid var(--border);
-      padding: 28px 32px;
+      padding: 3rem 0;
       text-align: center;
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--text3);
-      letter-spacing: 0.05em;
+      background-color: hsl(var(--background));
+      border-top: 1px solid hsl(var(--border));
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: hsl(var(--muted-foreground));
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
     }
 
-    /* Mobile nav */
-    @media (max-width: 600px) {
-      nav {
-        padding: 0 16px;
+    /* Responsive adjustments */
+    @media (max-width: 968px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        text-align: center;
+      }
+
+      .hero-content {
+        align-items: center;
+      }
+
+      .hero-lead {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-info-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .skills-category-card {
+        grid-column: auto !important;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
       }
 
       .nav-links {
-        gap: 16px;
+        display: none;
       }
 
-      section {
-        padding: 56px 16px;
+      .nav-actions .btn-primary {
+        display: none;
       }
 
-      .hero-stats {
-        gap: 24px;
+      .menu-toggle {
+        display: block;
       }
+    }
 
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
+    /* Mobile Nav Drawer overlay */
+    .mobile-menu-drawer {
+      position: fixed;
+      inset: 0;
+      background-color: hsl(var(--background));
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem;
+      transform: translateY(-100%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .mobile-menu-drawer.open {
+      transform: translateY(0);
+    }
+
+    .mobile-menu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 3rem;
+    }
+
+    .mobile-menu-links {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+      margin-bottom: auto;
+    }
+
+    .mobile-menu-links a {
+      font-size: 1.5rem;
+      font-weight: 700;
+      font-family: var(--font-display);
+    }
+
+    .mobile-menu-links a.active {
+      color: hsl(var(--accent));
+    }
+
+    .mobile-menu-drawer .btn-primary {
+      width: 100%;
+      max-width: 300px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 1rem;
+      font-size: 1rem;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <a href="#hero" class="nav-logo">ronak.dev</a>
-    <ul class="nav-links">
-      <li><a href="#about">about</a></li>
-      <li><a href="#projects">projects</a></li>
-      <li><a href="#skills">skills</a></li>
-      <li><a href="#contact">contact</a></li>
+  <!-- Background overlay grid layout pattern -->
+  <div class="grid-bg"></div>
+
+  <!-- Header Nav -->
+  <header id="header">
+    <div class="container">
+      <div class="nav">
+        <a href="#hero" class="logo">
+          <!-- Logo SVG Terminal icon -->
+          <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+            style="color: hsl(var(--accent));">
+            <polyline points="4 17 10 11 4 5"></polyline>
+            <line x1="12" y1="19" x2="20" y2="19"></line>
+          </svg>
+          <span>Ronak<span class="accent-letter">V</span></span>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="#hero" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <!-- Light/Dark Mode Switcher -->
+          <button id="theme-toggle" class="btn-ghost btn" aria-label="Switch Theme">
+            <!-- Sun Icon (Active when dark is true, switch to light) -->
+            <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              style="display: block;">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path
+                d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41">
+              </path>
+            </svg>
+            <!-- Moon Icon (Active when dark is false, switch to dark) -->
+            <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              style="display: none;">
+              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+            </svg>
+          </button>
+
+          <a href="#contact" class="btn btn-primary">Hire Me</a>
+
+          <!-- Mobile Hamburger Toggle -->
+          <button class="menu-toggle" id="menu-toggle-btn" aria-label="Open Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="4" y1="12" x2="20" y2="12"></line>
+              <line x1="4" y1="6" x2="20" y2="6"></line>
+              <line x1="4" y1="18" x2="20" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu overlay -->
+  <div class="mobile-menu-drawer" id="mobile-menu">
+    <div class="mobile-menu-header">
+      <div class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+          style="color: hsl(var(--accent));">
+          <polyline points="4 17 10 11 4 5"></polyline>
+          <line x1="12" y1="19" x2="20" y2="19"></line>
+        </svg>
+        <span>Ronak<span class="accent-letter">V</span></span>
+      </div>
+      <button class="btn-ghost btn" id="menu-close-btn" aria-label="Close Menu" style="padding: 0.5rem;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="12"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <ul class="mobile-menu-links">
+      <li><a href="#hero" class="active">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
-    <div class="nav-badge">⬤ open to work</div>
-  </nav>
+    <a href="#contact" class="btn btn-primary" id="mobile-hire-btn">Hire Me</a>
+  </div>
 
-  <!-- HERO -->
-  <section id="hero">
-    <div class="hero-grid-bg"></div>
-    <div class="hero-label">AI / ML Engineer · BVM Engineering College · Gujarat, India</div>
-    <h1 class="hero-name">Ronak Vegad</h1>
-    <div class="hero-title">Building AI systems that <span>actually work</span></div>
-    <p class="hero-desc">
-      RAG pipelines · Voice agents · OCR systems · Full-stack LLM apps<br>
-      I build end-to-end AI applications using Python, LangChain, FastAPI, and modern LLM APIs — both cloud (Groq,
-      OpenAI) and on-device (Ollama). Focus: shipping things that work, not just demos.
-    </p>
-    <div class="hero-ctas">
-      <a class="btn-primary" href="#projects">View My Work ↓</a>
-      <a class="btn-secondary" href="https://drive.google.com/file/d/1aBF_mG1yf9XoUkpc2PL5N9hGK1lDFf0f/view?usp=sharing"
-        target="_blank">Resume →</a>
-      <a class="btn-secondary" href="https://github.com/Ronak-vegad" target="_blank">GitHub →</a>
-      <a class="btn-secondary" href="https://www.linkedin.com/in/ronak-vegad-590824372/" target="_blank">LinkedIn →</a>
-    </div>
-    <div class="hero-stats">
-      <div>
-        <div class="stat-num">5</div>
-        <div class="stat-label">Projects Shipped</div>
-      </div>
-      <div>
-        <div class="stat-num">3+</div>
-        <div class="stat-label">LLM Frameworks</div>
-      </div>
-      <div>
-        <div class="stat-num">Cloud + On-device</div>
-        <div class="stat-label">LLM Experience</div>
-      </div>
-    </div>
-  </section>
+  <main>
+    <!-- HERO SECTION -->
+    <section id="hero">
+      <!-- Glow blobs -->
+      <div class="glow-blob"
+        style="top: 10%; left: -10%; width: 350px; height: 350px; background-color: hsl(var(--primary));"></div>
+      <div class="glow-blob"
+        style="top: 20%; right: -10%; width: 400px; height: 400px; background-color: hsl(var(--accent));"></div>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="section-header">
-      <div class="section-tag">// about.me</div>
-      <h2 class="section-title">Who I am</h2>
-    </div>
-    <div style="font-size:14px;color:var(--text2);line-height:1.9;max-width:600px;">
-      <p style="margin-bottom:16px;">I'm a final-year engineering student at BVM Engineering College, Gujarat, building
-        AI/ML systems end-to-end. My work spans RAG-based chatbots, voice agents, OCR pipelines, and full-stack LLM
-        applications.</p>
-      <p style="margin-bottom:16px;">I work with both cloud LLM APIs (Groq, OpenAI) and on-device inference (Ollama with
-        models like llama3.2 and mistral) — choosing the right tool for each project's needs around latency, cost, and
-        privacy.</p>
-      <p>I care about building things that are reliable and practical — not just impressive in a demo. Currently
-        exploring multi-agent architectures and LLM fine-tuning.</p>
-    </div>
-  </section>
+      <div class="container">
+        <div class="hero-grid">
 
-  <!-- PROJECTS -->
-  <section id="projects">
-    <div class="section-header">
-      <div class="section-tag">// projects.log</div>
-      <h2 class="section-title">What I've shipped</h2>
-    </div>
-
-    <div class="project-filters">
-      <button class="filter-btn active" onclick="filterProjects('all', this)">All</button>
-      <button class="filter-btn" onclick="filterProjects('rag', this)">RAG / LLM</button>
-      <button class="filter-btn" onclick="filterProjects('voice', this)">Voice</button>
-      <button class="filter-btn" onclick="filterProjects('ocr', this)">OCR</button>
-      <button class="filter-btn" onclick="filterProjects('fullstack', this)">Full-stack</button>
-    </div>
-
-    <div class="projects-grid">
-
-      <!-- AskBVM -->
-      <div class="project-card" data-type="rag">
-        <div class="project-card-top">
-          <div class="project-title">CollegeChatbot</div>
-          <span class="project-type-badge badge-rag">RAG / LLM</span>
-        </div>
-        <div class="project-body">
-          <p class="project-desc">RAG-powered chatbot for BVM Engineering College. Students ask any college question and
-            get accurate, sourced answers — not hallucinations.</p>
-          <div class="project-what-i-solved">
-            <div class="solved-label">⚡ what I actually solved</div>
-            <div class="solved-text">
-              Problem: College FAQs are inconsistently worded — same question phrased 10 different ways.<br>
-              Solution: Added query normalization + fuzzy matching + spell correction before retrieval. Tuned FAISS
-              similarity threshold to cut hallucinations on out-of-scope questions. Built content-aware chunking in the
-              ingest pipeline for cleaner, more accurate retrieval.
+          <div class="hero-content reveal">
+            <div style="font-size: 1.125rem; font-weight: 500; color: hsl(var(--foreground)); margin-bottom: 0.5rem;">
+              Hello, I'm</div>
+            <h1 class="hero-title" style="margin-bottom: 1rem; font-size: clamp(3rem, 6vw, 4.5rem);">
+              Ronak Vegad<br />
+              <span class="gradient-text">AI / ML Engineer</span>
+            </h1>
+            <p class="hero-lead">
+              RAG pipelines · Voice agents · OCR systems · Full-stack LLM apps.
+              I build end-to-end AI applications using Python, LangChain, FastAPI, and modern LLM APIs — both cloud
+              (Groq, OpenAI) and on-device (Ollama).
+            </p>
+            <div class="hero-actions">
+              <a href="#projects" class="btn btn-accent">
+                Let's Build with AI
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  style="margin-left: 0.5rem;">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+              <a href="https://drive.google.com/file/d/1aBF_mG1yf9XoUkpc2PL5N9hGK1lDFf0f/view?usp=sharing"
+                target="_blank" rel="noreferrer" class="btn btn-secondary">Resume</a>
+              <a href="https://github.com/Ronak-vegad" target="_blank" rel="noreferrer"
+                class="btn btn-secondary">GitHub</a>
+              <a href="https://www.linkedin.com/in/ronak-vegad-590824372/" target="_blank" rel="noreferrer"
+                class="btn btn-secondary">LinkedIn</a>
             </div>
           </div>
-          <div class="arch-diagram">
-            <div class="arch-flow">
-              <div class="arch-node">User Query</div>
-              <div class="arch-arrow">→</div>
-              <div class="arch-node green">Normalizer<small>fuzzy + spell</small></div>
-              <div class="arch-arrow">→</div>
-              <div class="arch-node purple">FAISS<small>nomic-embed</small></div>
-              <div class="arch-arrow">→</div>
-              <div class="arch-node blue">Ollama LLM<small>llama3.2</small></div>
-              <div class="arch-arrow">→</div>
-              <div class="arch-node green">Answer</div>
+
+          <!-- Hero Image spot: left empty as space per user's prompt -->
+          <div class="hero-image-container reveal" style="transition-delay: 0.2s;">
+            <div class="hero-image-placeholder">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M9.813 15.904 9 21l8.982-11.825H14l.813-5.079L5.833 15.904h3.98Z" />
+              </svg>
+              <span>AI / ML AGENT SPACE</span>
             </div>
           </div>
-          <div class="project-tags">
-            <span class="tag">Python</span><span class="tag">LangChain</span><span class="tag">FAISS</span><span
-              class="tag">Ollama</span><span class="tag">FastAPI</span><span class="tag">React</span><span
-              class="tag">Vite</span><span class="tag">nomic-embed-text</span>
-          </div>
-          <div class="project-links">
-            <!-- UPDATE THIS LINK to your actual AskBVM repo URL -->
-            <a class="proj-link" href="https://github.com/Ronak-vegad" target="_blank">⬡ GitHub Repo</a>
-            <!-- If you have a demo video, add it here: -->
-            <!-- <a class="proj-link demo" href="YOUR_DEMO_LINK" target="_blank">▶ Demo Video</a> -->
-          </div>
-        </div>
-      </div>
 
-      <!-- Voice AI Agent -->
-      <div class="project-card" data-type="voice">
-        <div class="project-card-top">
-          <div class="project-title">Voice AI Agent</div>
-          <span class="project-type-badge badge-voice">Voice</span>
         </div>
-        <div class="project-body">
-          <p class="project-desc">Voice-controlled AI agent built during internship at Mem0 AI. Fully on-device
-            inference pipeline — speech-to-text, reasoning, and speech output without sending data to the cloud.</p>
-          <div class="project-what-i-solved">
-            <div class="solved-label">⚡ what I actually solved</div>
-            <div class="solved-text">
-              Problem: Most voice agents depend on cloud APIs — adds latency and exposes user data.<br>
-              Solution: Full pipeline on-device using faster-whisper for speech-to-text (GPU-accelerated), llama3.2:3b
-              via Ollama for reasoning, and TTS output. Under 2s response time on consumer hardware. Delivered as a
-              Substack article + demo video.
+
+
+
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about">
+      <div class="glow-blob"
+        style="bottom: 10%; right: 10%; width: 350px; height: 350px; background-color: hsl(var(--primary));"></div>
+
+      <div class="container">
+
+        <div class="section-header reveal">
+          <h2 class="section-title">About Me</h2>
+          <p class="section-subtitle">
+            I'm a final-year engineering student building AI/ML systems end-to-end.
+          </p>
+        </div>
+
+        <div class="about-grid">
+
+          <!-- About image space: left empty as space per user request -->
+          <div class="reveal">
+            <div class="about-image-placeholder">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-.778.099-1.533.284-2.253m0 0A17.919 17.919 0 0 0 12 12.5c3.162 0 6.133-.815 8.716-2.247" />
+              </svg>
+              <span>ENGINEERING COLLEGE LAB</span>
             </div>
           </div>
-          <div class="arch-diagram">
-            <div class="arch-flow">
-              <div class="arch-node">Mic Input</div>
-              <div class="arch-arrow">→</div>
-              <div class="arch-node blue">faster-whisper<small>STT on-device</small></div>
-              <div class="arch-arrow">→</div>
-              <div class="arch-node purple">llama3.2:3b<small>via Ollama</small></div>
-              <div class="arch-arrow">→</div>
-              <div class="arch-node green">TTS Output<small>on-device</small></div>
+
+          <div class="about-content reveal" style="transition-delay: 0.2s;">
+            <h3 class="about-title">Building the future with AI</h3>
+            <p class="about-text">
+              I'm a final-year engineering student at BVM Engineering College, Gujarat, building AI/ML systems
+              end-to-end. My work spans RAG-based chatbots, voice agents, OCR pipelines, and full-stack LLM
+              applications.
+            </p>
+            <p class="about-text">
+              I work with both cloud LLM APIs (Groq, OpenAI) and on-device inference (Ollama with models like llama3.2
+              and mistral) — choosing the right tool for each project's needs around latency, cost, and privacy.
+            </p>
+            <p class="about-text">
+              I care about building things that are reliable and practical — not just impressive in a demo. Currently
+              exploring multi-agent architectures, LLM fine-tuning, graph RAG databases, and advanced RAG patterns
+              including Hybrid RAG, Agentic RAG, and Multimodal RAG.
+            </p>
+
+            <div class="about-cards-grid">
+
+              <div class="about-card">
+                <div class="about-card-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path>
+                    <path d="M12 16v-4"></path>
+                    <path d="M12 8h.01"></path>
+                  </svg>
+                </div>
+                <h4 class="about-card-title">AI Pipelines</h4>
+                <p class="about-card-desc">Building intelligent agents, custom RAG structures and LLM systems.</p>
+              </div>
+
+              <div class="about-card">
+                <div class="about-card-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                    <polyline points="2 17 12 22 22 17"></polyline>
+                    <polyline points="2 12 12 17 22 12"></polyline>
+                  </svg>
+                </div>
+                <h4 class="about-card-title">LLM Integration</h4>
+                <p class="about-card-desc">Deploying on-device (Ollama) and cloud APIs (Groq, OpenAI).</p>
+              </div>
+
+              <div class="about-card">
+                <div class="about-card-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="16 18 22 12 16 6"></polyline>
+                    <polyline points="8 6 2 12 8 18"></polyline>
+                  </svg>
+                </div>
+                <h4 class="about-card-title">Python Core</h4>
+                <p class="about-card-desc">Leveraging Python libraries for advanced machine learning pipelines.</p>
+              </div>
+
+              <div class="about-card">
+                <div class="about-card-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                    </path>
+                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                    <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                  </svg>
+                </div>
+                <h4 class="about-card-title">API & Full-Stack</h4>
+                <p class="about-card-desc">Constructing robust FastAPI endpoints linked to responsive React frontends.
+                </p>
+              </div>
+
             </div>
           </div>
-          <div class="project-tags">
-            <span class="tag">Python</span><span class="tag">faster-whisper</span><span class="tag">Ollama</span><span
-              class="tag">Streamlit</span><span class="tag">Mem0</span>
-          </div>
-          <div class="project-links">
-            <!-- UPDATE THIS LINK to your actual repo URL -->
-            <a class="proj-link" href="https://github.com/Ronak-vegad" target="_blank">⬡ GitHub Repo</a>
-          </div>
-        </div>
-      </div>
 
-      <!-- AI Chatbot ReAct -->
-      <div class="project-card" data-type="fullstack">
-        <div class="project-card-top">
-          <div class="project-title">AI Chatbot — ReAct Agent</div>
-          <span class="project-type-badge badge-full">Full-stack</span>
         </div>
-        <div class="project-body">
-          <p class="project-desc">Full-stack ChatGPT-style AI chatbot with file upload, persistent memory, and a ReAct
-            agent that reasons step-by-step before responding — not just next-token generation.</p>
-          <div class="project-what-i-solved">
-            <div class="solved-label">⚡ what I actually solved</div>
-            <div class="solved-text">
-              Problem: Basic chatbots have no memory across sessions and can't work with user-uploaded files.<br>
-              Solution: ReAct architecture (Reason → Act → Observe loop) with ChromaDB for persistent vector memory
-              across sessions. File upload → embed → retrieve on demand. FastAPI backend, React frontend.
+
+      </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects">
+      <div class="glow-blob"
+        style="top: 30%; left: -5%; width: 400px; height: 400px; background-color: hsl(var(--accent) / 0.15);"></div>
+
+      <div class="container">
+
+        <div class="section-header reveal">
+          <h2 class="section-title">My Projects</h2>
+          <p class="section-subtitle">
+            A showcase of the AI, Voice, OCR, and Full-Stack systems I have designed and shipped.
+          </p>
+        </div>
+
+        <div class="projects-grid">
+
+          <!-- CollegeChatbot -->
+          <article class="project-card reveal" data-type="rag" data-featured="true">
+            <div>
+              <div class="project-image-container">
+                <img src="images/project_chatbot.png" alt="CollegeChatbot" class="project-img" />
+              </div>
+              <div class="project-info">
+                <div class="project-header-row">
+                  <h3 class="project-title">CollegeChatbot</h3>
+                  <span class="project-tag">RAG / LLM</span>
+                </div>
+                <p class="project-desc">
+                  RAG-powered chatbot for BVM Engineering College. Students ask any college question and get accurate,
+                  sourced answers — not hallucinations.
+                </p>
+
+              </div>
+            </div>
+
+            <div class="project-tags-and-links" style="padding: 0 1.5rem 1.5rem 1.5rem;">
+              <div class="project-tags" style="margin-bottom: 1.25rem;">
+                <span class="project-tech-tag">Python</span>
+                <span class="project-tech-tag">LangChain</span>
+                <span class="project-tech-tag">FAISS</span>
+                <span class="project-tech-tag">Ollama</span>
+                <span class="project-tech-tag">FastAPI</span>
+                <span class="project-tech-tag">React</span>
+              </div>
+              <div style="border-top: 1px solid hsl(var(--border)); padding-top: 1rem; display: flex; gap: 1.25rem;">
+                <a href="https://github.com/Ronak-vegad" target="_blank" rel="noreferrer" class="project-link">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                    </path>
+                  </svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Voice AI Agent -->
+          <article class="project-card reveal" data-type="voice" data-featured="true" style="transition-delay: 0.1s;">
+            <div>
+              <div class="project-image-container">
+                <img src="images/project_voice.png" alt="Voice AI Agent" class="project-img" />
+              </div>
+              <div class="project-info">
+                <div class="project-header-row">
+                  <h3 class="project-title">Voice AI Agent</h3>
+                  <span class="project-tag">Voice Agent</span>
+                </div>
+                <p class="project-desc">
+                  Voice-controlled AI agent built during internship at Mem0 AI. Fully on-device inference pipeline —
+                  speech-to-text, reasoning, and speech output without sending data to the cloud.
+                </p>
+
+              </div>
+            </div>
+
+            <div class="project-tags-and-links" style="padding: 0 1.5rem 1.5rem 1.5rem;">
+              <div class="project-tags" style="margin-bottom: 1.25rem;">
+                <span class="project-tech-tag">Python</span>
+                <span class="project-tech-tag">Faster-Whisper</span>
+                <span class="project-tech-tag">Ollama</span>
+                <span class="project-tech-tag">Streamlit</span>
+                <span class="project-tech-tag">Mem0 API</span>
+              </div>
+              <div style="border-top: 1px solid hsl(var(--border)); padding-top: 1rem; display: flex; gap: 1.25rem;">
+                <a href="https://github.com/Ronak-vegad" target="_blank" rel="noreferrer" class="project-link">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                    </path>
+                  </svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- AI Chatbot — ReAct Agent -->
+          <article class="project-card reveal" data-type="fullstack" data-featured="true">
+            <div>
+              <div class="project-image-container">
+                <img src="images/project_react.png" alt="AI Chatbot — ReAct Agent" class="project-img" />
+              </div>
+              <div class="project-info">
+                <div class="project-header-row">
+                  <h3 class="project-title">AI Chatbot — ReAct Agent</h3>
+                  <span class="project-tag">Full-Stack</span>
+                </div>
+                <p class="project-desc">
+                  Full-stack ChatGPT-style AI chatbot with file upload, persistent memory, and a ReAct agent that
+                  reasons step-by-step before responding.
+                </p>
+
+              </div>
+            </div>
+
+            <div class="project-tags-and-links" style="padding: 0 1.5rem 1.5rem 1.5rem;">
+              <div class="project-tags" style="margin-bottom: 1.25rem;">
+                <span class="project-tech-tag">React</span>
+                <span class="project-tech-tag">FastAPI</span>
+                <span class="project-tech-tag">LangChain</span>
+                <span class="project-tech-tag">ChromaDB</span>
+                <span class="project-tech-tag">Ollama</span>
+              </div>
+              <div style="border-top: 1px solid hsl(var(--border)); padding-top: 1rem; display: flex; gap: 1.25rem;">
+                <a href="https://github.com/Ronak-vegad" target="_blank" rel="noreferrer" class="project-link">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                    </path>
+                  </svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- SmartBilling -->
+          <article class="project-card reveal" data-type="ocr" data-featured="true" style="transition-delay: 0.1s;">
+            <div>
+              <div class="project-image-container">
+                <img src="images/project_ocr.png" alt="SmartBilling" class="project-img" />
+              </div>
+              <div class="project-info">
+                <div class="project-header-row">
+                  <h3 class="project-title">SmartBilling</h3>
+                  <span class="project-tag">OCR / Vision</span>
+                </div>
+                <p class="project-desc">
+                  OCR-powered billing automation. Upload an invoice PDF → AI extracts all structured data → stores it in
+                  a local database. End-to-end billing pipeline.
+                </p>
+
+              </div>
+            </div>
+
+            <div class="project-tags-and-links" style="padding: 0 1.5rem 1.5rem 1.5rem;">
+              <div class="project-tags" style="margin-bottom: 1.25rem;">
+                <span class="project-tech-tag">Python</span>
+                <span class="project-tech-tag">PaddleOCR</span>
+                <span class="project-tech-tag">FastAPI</span>
+                <span class="project-tech-tag">SQLite</span>
+                <span class="project-tech-tag">SQLAlchemy</span>
+              </div>
+              <div style="border-top: 1px solid hsl(var(--border)); padding-top: 1rem; display: flex; gap: 1.25rem;">
+                <a href="https://github.com/Ronak-vegad" target="_blank" rel="noreferrer" class="project-link">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                    </path>
+                  </svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Resume Parser Pro -->
+          <article class="project-card reveal" data-type="fullstack" data-featured="false">
+            <div>
+              <div class="project-image-container">
+                <img src="images/project_resume.png" alt="Resume Parser Pro" class="project-img" />
+              </div>
+              <div class="project-info">
+                <div class="project-header-row">
+                  <h3 class="project-title">Resume Parser Pro</h3>
+                  <span class="project-tag">Full-Stack</span>
+                </div>
+                <p class="project-desc">
+                  Intelligent resume parser with a two-page upload-and-review flow. Drop a PDF → AI extracts structured
+                  skills, experience, and project data. Clean UI for review before export.
+                </p>
+
+              </div>
+            </div>
+
+            <div class="project-tags-and-links" style="padding: 0 1.5rem 1.5rem 1.5rem;">
+              <div class="project-tags" style="margin-bottom: 1.25rem;">
+                <span class="project-tech-tag">React</span>
+                <span class="project-tech-tag">FastAPI</span>
+                <span class="project-tech-tag">Python</span>
+                <span class="project-tech-tag">PDF Parsing</span>
+              </div>
+              <div style="border-top: 1px solid hsl(var(--border)); padding-top: 1rem; display: flex; gap: 1.25rem;">
+                <a href="https://github.com/Ronak-vegad" target="_blank" rel="noreferrer" class="project-link">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                    </path>
+                  </svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section id="skills">
+      <div class="glow-blob"
+        style="top: 10%; right: -5%; width: 350px; height: 350px; background-color: hsl(var(--primary) / 0.1);"></div>
+
+      <div class="container">
+
+        <div class="section-header reveal">
+          <h2 class="section-title">My Skills</h2>
+          <p class="section-subtitle">
+            I'm constantly improving my skills and learning new technologies to stay current in the ever-evolving AI
+            landscape.
+          </p>
+        </div>
+
+        <div class="skills-grid">
+
+          <!-- Category 1: AI / ML -->
+          <div class="skills-category-card reveal">
+            <div class="skills-category-header">
+              <div class="skills-category-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44 2.5 2.5 0 0 1 0-3.12 3.01 3.01 0 0 1 0-3.88 2.5 2.5 0 0 1 0-3.12A2.5 2.5 0 0 1 9.5 2Z">
+                  </path>
+                  <path
+                    d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44 2.5 2.5 0 0 0 0-3.12 3.01 3.01 0 0 0 0-3.88 2.5 2.5 0 0 0 0-3.12A2.5 2.5 0 0 0 14.5 2Z">
+                  </path>
+                </svg>
+              </div>
+              <h3 class="skills-category-title">AI / ML</h3>
+            </div>
+            <ul class="skills-list">
+              <li>
+                <div class="skill-item">
+                  <span class="skill-chevron">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                  </span>
+                  <span class="skill-name">Python</span>
+                </div>
+              </li>
+              <li>
+                <div class="skill-item">
+                  <span class="skill-chevron">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                  </span>
+                  <span class="skill-name">Scikit-learn</span>
+                </div>
+              </li>
+              <li>
+                <div class="skill-item">
+                  <span class="skill-chevron">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                  </span>
+                  <span class="skill-name">LangChain</span>
+                </div>
+              </li>
+              <li>
+                <div class="skill-item">
+                  <span class="skill-chevron">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                  </span>
+                  <span class="skill-name">NumPy / Pandas</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Category 2: LLMs -->
+          <div class="skills-category-card reveal" style="transition-delay: 0.1s;">
+            <div class="skills-category-header">
+              <div class="skills-category-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                  </path>
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                  <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                </svg>
+              </div>
+              <h3 class="skills-category-title">LLMs</h3>
+            </div>
+            <ul class="skills-list">
+              <li>
+                <div class="skill-item">
+                  <span class="skill-chevron">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                  </span>
+                  <span class="skill-name">OpenAI APIs</span>
+                </div>
+              </li>
+              <li>
+                <div class="skill-item">
+                  <span class="skill-chevron">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                  </span>
+                  <span class="skill-name">Hugging Face</span>
+                </div>
+              </li>
+              <li>
+                <div class="skill-item">
+                  <span class="skill-chevron">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                  </span>
+                  <span class="skill-name">Embedding search</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Category 3: Tools & DevOps -->
+          <div class="skills-category-card reveal" style="transition-delay: 0.2s;">
+            <div class="skills-category-header">
+              <div class="skills-category-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="4 17 10 11 4 5"></polyline>
+                  <line x1="12" y1="19" x2="20" y2="19"></line>
+                </svg>
+              </div>
+              <h3 class="skills-category-title">Tools & DevOps</h3>
+            </div>
+            <ul class="skills-list">
+              <li>
+                <div class="skill-item">
+                  <span class="skill-chevron">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                  </span>
+                  <span class="skill-name">Git & GitHub</span>
+                </div>
+              </li>
+              <li>
+                <div class="skill-item">
+                  <span class="skill-chevron">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                  </span>
+                  <span class="skill-name">VS Code</span>
+                </div>
+              </li>
+              <li>
+                <div class="skill-item">
+                  <span class="skill-chevron">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                  </span>
+                  <span class="skill-name">Streamlit</span>
+                </div>
+              </li>
+              <li>
+                <div class="skill-item">
+                  <span class="skill-chevron">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                  </span>
+                  <span class="skill-name">Docker</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Category 4: Databases -->
+          <div class="skills-category-card reveal" style="transition-delay: 0.3s;">
+            <div class="skills-category-header">
+              <div class="skills-category-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                  <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                  <path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path>
+                </svg>
+              </div>
+              <h3 class="skills-category-title">Databases</h3>
+            </div>
+            <ul class="skills-list">
+              <li>
+                <div class="skill-item">
+                  <span class="skill-chevron">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                  </span>
+                  <span class="skill-name">Graph DB</span>
+                </div>
+              </li>
+              <li>
+                <div class="skill-item">
+                  <span class="skill-chevron">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                  </span>
+                  <span class="skill-name">Vector DBs</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Category 5: Learning -->
+          <div class="skills-category-card reveal" style="transition-delay: 0.4s;">
+            <div class="skills-category-header">
+              <div class="skills-category-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                </svg>
+              </div>
+              <h3 class="skills-category-title">Learning</h3>
+            </div>
+            <ul class="skills-list">
+              <li>
+                <div class="skill-item">
+                  <span class="skill-chevron">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                  </span>
+                  <span class="skill-name">Fine-tuning LLMs</span>
+                </div>
+              </li>
+              <li>
+                <div class="skill-item">
+                  <span class="skill-chevron">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                  </span>
+                  <span class="skill-name">Multi Agent Systems (Crew AI)</span>
+                </div>
+              </li>
+              <li>
+                <div class="skill-item">
+                  <span class="skill-chevron">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                  </span>
+                  <span class="skill-name">Multi-modal Models</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact">
+      <div class="glow-blob"
+        style="bottom: 5%; left: 10%; width: 400px; height: 400px; background-color: hsl(var(--accent) / 0.15);"></div>
+
+      <div class="container">
+
+        <div class="section-header reveal">
+          <h2 class="section-title">Get In Touch</h2>
+          <p class="section-subtitle">
+            Have a project in mind or want to collaborate? Feel free to reach out and I'll get back to you as soon as
+            possible.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+
+          <div class="contact-info-column reveal">
+            <h3 class="contact-info-title">Contact Information</h3>
+            <p class="contact-info-text">
+              I'm interested in remote job opportunities, internships, and freelance projects, especially ambitious AI
+              agent pipelines. If you have questions or want to collaborate, feel free to use the form or reach out
+              directly.
+            </p>
+
+            <div class="contact-links-list">
+              <a href="mailto:vegadronak03@gmail.com" class="contact-link-item">
+                <div class="contact-link-icon-box">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                  </svg>
+                </div>
+                <div>
+                  <div style="font-size: 0.75rem; color: hsl(var(--muted-foreground));">EMAIL</div>
+                  <div class="contact-link-label">vegadronak03@gmail.com</div>
+                </div>
+              </a>
+              <a href="https://github.com/Ronak-vegad" target="_blank" rel="noopener noreferrer"
+                class="contact-link-item">
+                <div class="contact-link-icon-box">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                    </path>
+                  </svg>
+                </div>
+                <div>
+                  <div style="font-size: 0.75rem; color: hsl(var(--muted-foreground));">GITHUB</div>
+                  <div class="contact-link-label">Ronak-vegad</div>
+                </div>
+              </a>
+              <a href="https://www.linkedin.com/in/ronak-vegad-590824372/" target="_blank" rel="noopener noreferrer"
+                class="contact-link-item">
+                <div class="contact-link-icon-box">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                    <rect x="2" y="9" width="4" height="12"></rect>
+                    <circle cx="4" cy="4" r="2"></circle>
+                  </svg>
+                </div>
+                <div>
+                  <div style="font-size: 0.75rem; color: hsl(var(--muted-foreground));">LINKEDIN</div>
+                  <div class="contact-link-label">ronak-vegad</div>
+                </div>
+              </a>
+            </div>
+
+            <div class="status-card">
+              <h4 class="status-title">Status</h4>
+              <p class="status-desc">
+                Looking for internships, full-time developer roles, and ambitious freelance AI/ML projects. I build AI
+                systems end-to-end — RAG, agents, OCR, APIs. If you need AI that ships, let's talk.
+              </p>
+              <div class="status-pulse-row">
+                <span class="status-pulse-dot"></span>
+                <span>Open to Work — Fresher AI/ML Engineer</span>
+              </div>
             </div>
           </div>
-          <div class="arch-diagram">
-            <div class="arch-flow">
-              <div class="arch-node">User + File</div>
-              <div class="arch-arrow">→</div>
-              <div class="arch-node purple">ReAct Agent<small>reason + act</small></div>
-              <div class="arch-arrow">→</div>
-              <div class="arch-node blue">ChromaDB<small>vector memory</small></div>
-              <div class="arch-arrow">→</div>
-              <div class="arch-node green">LLM Response</div>
-            </div>
+
+          <div class="contact-form-column reveal" style="transition-delay: 0.2s;">
+            <form id="portfolio-contact-form">
+              <div class="form-group">
+                <label for="name" class="form-label">Name</label>
+                <input id="name" type="text" class="form-input" placeholder="Your name" required />
+                <span id="name-error" class="form-error" style="display: none;">Name is required</span>
+              </div>
+              <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input id="email" type="email" class="form-input" placeholder="Your email" required />
+                <span id="email-error" class="form-error" style="display: none;">A valid email is required</span>
+              </div>
+              <div class="form-group">
+                <label for="message" class="form-label">Message</label>
+                <textarea id="message" class="form-textarea" placeholder="Your message" required></textarea>
+                <span id="message-error" class="form-error" style="display: none;">Message is required</span>
+              </div>
+
+              <button type="submit" id="submit-btn" class="btn btn-accent"
+                style="width: 100%; padding: 0.875rem; justify-content: center; gap: 0.5rem;">
+                Send Message
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+              </button>
+
+              <div id="form-success" class="form-status-msg success">Your message has been sent successfully. I'll get
+                back to you soon!</div>
+              <div id="form-error" class="form-status-msg error">There was an error sending your message. Please try
+                again.</div>
+            </form>
           </div>
-          <div class="project-tags">
-            <span class="tag">React</span><span class="tag">FastAPI</span><span class="tag">LangChain</span><span
-              class="tag">ChromaDB</span><span class="tag">Ollama</span>
-          </div>
-          <div class="project-links">
-            <a class="proj-link" href="https://github.com/Ronak-vegad" target="_blank">⬡ GitHub Repo</a>
-          </div>
+
         </div>
+
       </div>
-
-      <!-- SmartBilling -->
-      <div class="project-card" data-type="ocr">
-        <div class="project-card-top">
-          <div class="project-title">SmartBilling</div>
-          <span class="project-type-badge badge-ocr">OCR</span>
-        </div>
-        <div class="project-body">
-          <p class="project-desc">OCR-powered billing automation. Upload an invoice PDF → AI extracts all structured
-            data → stores it in a local encrypted database. End-to-end billing pipeline.</p>
-          <div class="project-what-i-solved">
-            <div class="solved-label">⚡ what I actually solved</div>
-            <div class="solved-text">
-              Problem: OCR alone is inaccurate on messy or varied invoice formats; cloud solutions raise privacy
-              concerns.<br>
-              Solution: Two-stage pipeline — PaddleOCR for text extraction (stage 1), local LLM for structured parsing
-              and error correction (stage 2). SQLite with encryption for secure storage.
-            </div>
-          </div>
-          <div class="arch-diagram">
-            <div class="arch-flow">
-              <div class="arch-node">Invoice PDF</div>
-              <div class="arch-arrow">→</div>
-              <div class="arch-node orange">PaddleOCR<small>text extraction</small></div>
-              <div class="arch-arrow">→</div>
-              <div class="arch-node purple">Local LLM<small>parse + fix</small></div>
-              <div class="arch-arrow">→</div>
-              <div class="arch-node green">SQLite enc.</div>
-            </div>
-          </div>
-          <div class="project-tags">
-            <span class="tag">Python</span><span class="tag">PaddleOCR</span><span class="tag">FastAPI</span><span
-              class="tag">SQLite</span><span class="tag">SQLAlchemy</span>
-          </div>
-          <div class="project-links">
-            <a class="proj-link" href="https://github.com/Ronak-vegad" target="_blank">⬡ GitHub Repo</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Resume Parser Pro -->
-      <div class="project-card" data-type="fullstack">
-        <div class="project-card-top">
-          <div class="project-title">Resume Parser Pro</div>
-          <span class="project-type-badge badge-full">Full-stack</span>
-        </div>
-        <div class="project-body">
-          <p class="project-desc">Intelligent resume parser with a two-page upload-and-review flow. Drop a PDF → AI
-            extracts structured skills, experience, and project data — clean UI for review before export.</p>
-          <div class="project-what-i-solved">
-            <div class="solved-label">⚡ what I actually solved</div>
-            <div class="solved-text">
-              Problem: Resumes come in wildly different layouts and formats — naive parsing breaks on most of them.<br>
-              Solution: LLM-powered extraction that handles layout variance. Structured JSON output with a clean
-              two-step review UI before the user exports the data.
-            </div>
-          </div>
-          <div class="project-tags">
-            <span class="tag">React</span><span class="tag">FastAPI</span><span class="tag">Python</span><span
-              class="tag">PDF parsing</span>
-          </div>
-          <div class="project-links">
-            <a class="proj-link" href="https://github.com/Ronak-vegad" target="_blank">⬡ GitHub Repo</a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section id="skills">
-    <div class="section-header">
-      <div class="section-tag">// tech.stack</div>
-      <h2 class="section-title">Skills — proved, not scored</h2>
-    </div>
-
-    <div class="skills-philosophy">
-      No star ratings. Every skill below is shown with where I actually used it.<br>
-      I work with both cloud APIs (Groq, OpenAI) and on-device LLMs (Ollama) — the right tool for the right job.
-    </div>
-
-    <div class="skills-grid">
-
-      <div class="skill-domain">
-        <div class="skill-domain-title">
-          <div class="domain-icon" style="background:rgba(0,229,160,0.1)">🧠</div>
-          AI / ML Core
-        </div>
-        <div class="skill-item">
-          <div class="skill-dot"></div>
-          <div>
-            <div class="skill-name">Python</div>
-            <div class="skill-proof">All 5 projects — primary language throughout</div>
-          </div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-dot"></div>
-          <div>
-            <div class="skill-name">LangChain</div>
-            <div class="skill-proof">AskBVM, AI Chatbot — RAG chains, ReAct agents</div>
-          </div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-dot"></div>
-          <div>
-            <div class="skill-name">RAG Pipelines</div>
-            <div class="skill-proof">AskBVM — query normalization, chunking, retrieval tuning</div>
-          </div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-dot"></div>
-          <div>
-            <div class="skill-name">FAISS / ChromaDB</div>
-            <div class="skill-proof">FAISS in AskBVM · ChromaDB in AI Chatbot</div>
-          </div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-dot"></div>
-          <div>
-            <div class="skill-name">ReAct Agents</div>
-            <div class="skill-proof">AI Chatbot — reason + act loop with persistent memory</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="skill-domain">
-        <div class="skill-domain-title">
-          <div class="domain-icon" style="background:rgba(139,92,246,0.1)">⚙️</div>
-          LLMs & APIs
-        </div>
-        <div class="skill-item">
-          <div class="skill-dot purple"></div>
-          <div>
-            <div class="skill-name">Ollama (on-device LLMs)</div>
-            <div class="skill-proof">AskBVM, Voice Agent, AI Chatbot — llama3.2, mistral</div>
-          </div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-dot purple"></div>
-          <div>
-            <div class="skill-name">Groq API</div>
-            <div class="skill-proof">Cloud inference for low-latency LLM calls</div>
-          </div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-dot purple"></div>
-          <div>
-            <div class="skill-name">OpenAI API</div>
-            <div class="skill-proof">GPT models for cloud-based chatbot features</div>
-          </div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-dot purple"></div>
-          <div>
-            <div class="skill-name">Hugging Face</div>
-            <div class="skill-proof">Model exploration, embedding models</div>
-          </div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-dot purple"></div>
-          <div>
-            <div class="skill-name">faster-whisper</div>
-            <div class="skill-proof">Voice Agent — GPU-accelerated speech-to-text</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="skill-domain">
-        <div class="skill-domain-title">
-          <div class="domain-icon" style="background:rgba(0,149,255,0.1)">🔧</div>
-          Backend & APIs
-        </div>
-        <div class="skill-item">
-          <div class="skill-dot blue"></div>
-          <div>
-            <div class="skill-name">FastAPI</div>
-            <div class="skill-proof">AskBVM, SmartBilling, AI Chatbot, Resume Parser</div>
-          </div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-dot blue"></div>
-          <div>
-            <div class="skill-name">REST API Design</div>
-            <div class="skill-proof">All backend projects — structured endpoint design</div>
-          </div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-dot blue"></div>
-          <div>
-            <div class="skill-name">SQLite / PostgreSQL</div>
-            <div class="skill-proof">SmartBilling — encrypted SQLite storage</div>
-          </div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-dot blue"></div>
-          <div>
-            <div class="skill-name">React / Vite</div>
-            <div class="skill-proof">AskBVM, AI Chatbot, Resume Parser — frontend</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="skill-domain">
-        <div class="skill-domain-title">
-          <div class="domain-icon" style="background:rgba(251,146,60,0.1)">👁️</div>
-          OCR & Vision
-        </div>
-        <div class="skill-item">
-          <div class="skill-dot orange"></div>
-          <div>
-            <div class="skill-name">PaddleOCR</div>
-            <div class="skill-proof">SmartBilling — stage 1 invoice text extraction</div>
-          </div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-dot orange"></div>
-          <div>
-            <div class="skill-name">Tesseract OCR</div>
-            <div class="skill-proof">Early billing pipeline — layout detection</div>
-          </div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-dot orange"></div>
-          <div>
-            <div class="skill-name">Git & GitHub</div>
-            <div class="skill-proof">All projects — version control and collaboration</div>
-          </div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-dot orange"></div>
-          <div>
-            <div class="skill-name">Streamlit</div>
-            <div class="skill-proof">Voice Agent — rapid UI for demo and internship delivery</div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="learning-section">
-      <div class="skill-domain-title" style="margin-bottom:0">
-        <div class="domain-icon" style="background:rgba(139,92,246,0.08)">📡</div>
-        Currently exploring
-      </div>
-      <div class="learning-items">
-        <span class="learning-item">Fine-tuning LLMs</span>
-        <span class="learning-item">Multi-modal Models</span>
-        <span class="learning-item">CrewAI / Multi-agent</span>
-        <span class="learning-item">Graph RAG</span>
-        <span class="learning-item">MCP Servers</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="section-header">
-      <div class="section-tag">// contact</div>
-      <h2 class="section-title">Let's build something</h2>
-    </div>
-
-    <div class="contact-grid">
-      <a class="contact-card" href="mailto:vegadronak03@gmail.com">
-        <div class="contact-card-label">Email</div>
-        <div class="contact-card-value">vegadronak03@gmail.com</div>
-      </a>
-      <a class="contact-card" href="https://www.linkedin.com/in/ronak-vegad-590824372/" target="_blank">
-        <div class="contact-card-label">LinkedIn</div>
-        <div class="contact-card-value">ronak-vegad →</div>
-      </a>
-      <a class="contact-card" href="https://github.com/Ronak-vegad" target="_blank">
-        <div class="contact-card-label">GitHub</div>
-        <div class="contact-card-value">Ronak-vegad →</div>
-      </a>
-      <a class="contact-card" href="https://drive.google.com/file/d/1aBF_mG1yf9XoUkpc2PL5N9hGK1lDFf0f/view?usp=sharing"
-        target="_blank">
-        <div class="contact-card-label">Resume</div>
-        <div class="contact-card-value">Download PDF →</div>
-      </a>
-    </div>
-
-    <div class="open-to-work-banner">
-      <div class="otw-title">⬤ Open to Work — Fresher AI/ML Engineer</div>
-      <div class="otw-desc">
-        Looking for internships, full-time roles, and ambitious freelance AI/ML projects.<br>
-        I build AI systems end-to-end — RAG, agents, OCR, APIs. If you need AI that ships, let's talk.
-      </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <footer>
-    © 2026 Ronak Vegad — AI / ML Engineer
+    <div class="container">
+      <p>© 2026 Ronak Vegad · BOLD TYPOGRAPHY · EXIT 0</p>
+    </div>
   </footer>
 
   <script>
-    function filterProjects(type, btn) {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      document.querySelectorAll('.project-card').forEach(card => {
-        if (type === 'all' || card.dataset.type === type) {
-          card.style.display = '';
+    // Theme Switcher System
+    const htmlEl = document.documentElement;
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const sunIcon = document.getElementById('sun-icon');
+    const moonIcon = document.getElementById('moon-icon');
+    const headerEl = document.getElementById('header');
+
+    // Initialize Theme
+    let isDark = localStorage.getItem('theme') !== 'light';
+    applyTheme(isDark);
+
+    function applyTheme(dark) {
+      if (dark) {
+        htmlEl.classList.add('dark');
+        htmlEl.classList.remove('light');
+        sunIcon.style.display = 'block';
+        moonIcon.style.display = 'none';
+
+        // update header background if scrolled
+        if (window.scrollY > 10) {
+          headerEl.classList.add('scrolled-bg-dark');
+          headerEl.classList.remove('scrolled-bg-light');
+        }
+      } else {
+        htmlEl.classList.add('light');
+        htmlEl.classList.remove('dark');
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'block';
+
+        // update header background if scrolled
+        if (window.scrollY > 10) {
+          headerEl.classList.add('scrolled-bg-light');
+          headerEl.classList.remove('scrolled-bg-dark');
+        }
+      }
+      localStorage.setItem('theme', dark ? 'dark' : 'light');
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+      isDark = !isDark;
+      applyTheme(isDark);
+    });
+
+
+    // Header Scroll Trigger Styling
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 10) {
+        headerEl.classList.add('scrolled');
+        if (htmlEl.classList.contains('dark')) {
+          headerEl.classList.add('scrolled-bg-dark');
+          headerEl.classList.remove('scrolled-bg-light');
         } else {
-          card.style.display = 'none';
+          headerEl.classList.add('scrolled-bg-light');
+          headerEl.classList.remove('scrolled-bg-dark');
+        }
+      } else {
+        headerEl.classList.remove('scrolled', 'scrolled-bg-dark', 'scrolled-bg-light');
+      }
+    });
+
+
+    // Scroll Reveal (Intersection Observer)
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
         }
       });
-    }
-  </script>
+    }, {
+      threshold: 0.05,
+      rootMargin: "0px 0px -50px 0px"
+    });
 
+    revealElements.forEach(el => observer.observe(el));
+
+
+    // Active Link Scroll Synchronization
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-links a, .mobile-menu-links a');
+
+    window.addEventListener('scroll', () => {
+      let currentSectionId = 'hero';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 150;
+        const height = sec.offsetHeight;
+        if (window.scrollY >= top && window.scrollY < top + height) {
+          currentSectionId = sec.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${currentSectionId}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+
+    // Mobile Menu Toggle Drawer
+    const menuToggleBtn = document.getElementById('menu-toggle-btn');
+    const menuCloseBtn = document.getElementById('menu-close-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuLinks = document.querySelectorAll('.mobile-menu-links a');
+    const mobileHireBtn = document.getElementById('mobile-hire-btn');
+
+    function openMobileMenu() {
+      mobileMenu.classList.add('open');
+    }
+
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('open');
+    }
+
+    menuToggleBtn.addEventListener('click', openMobileMenu);
+    menuCloseBtn.addEventListener('click', closeMobileMenu);
+    mobileMenuLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
+    mobileHireBtn.addEventListener('click', closeMobileMenu);
+
+
+    // Skill level rendering disabled - displaying clean skills list layout
+
+
+
+    // Contact Form Mockup Submission
+    const contactForm = document.getElementById('portfolio-contact-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const successMsg = document.getElementById('form-success');
+    const errorMsg = document.getElementById('form-error');
+
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+
+      submitBtn.disabled = true;
+      submitBtn.innerText = 'Sending...';
+
+      // Simulate form submission success
+      setTimeout(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Send Message <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>';
+
+        // Show success message
+        successMsg.style.display = 'block';
+        errorMsg.style.display = 'none';
+
+        // Reset form inputs
+        contactForm.reset();
+
+        // Hide success message after 5 seconds
+        setTimeout(() => {
+          successMsg.style.display = 'none';
+        }, 5000);
+      }, 1500);
+    });
+  </script>
 </body>
 
 </html>
