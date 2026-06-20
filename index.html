@@ -1576,6 +1576,15 @@
           </p>
         </div>
 
+        <div class="filter-tabs">
+          <button class="filter-tab active" data-filter="all">All</button>
+          <button class="filter-tab" data-filter="featured">Featured</button>
+          <button class="filter-tab" data-filter="rag">RAG</button>
+          <button class="filter-tab" data-filter="voice">Voice</button>
+          <button class="filter-tab" data-filter="ocr">OCR</button>
+          <button class="filter-tab" data-filter="fullstack">Full Stack</button>
+        </div>
+
         <div class="projects-grid">
 
           <!-- CollegeChatbot -->
@@ -1632,8 +1641,10 @@
                   <span class="project-tag">Voice Agent</span>
                 </div>
                 <p class="project-desc">
-                  Voice-controlled AI agent built during internship at Mem0 AI. Fully on-device inference pipeline —
-                  speech-to-text, reasoning, and speech output without sending data to the cloud.
+                  Real-time Voice AI Assistant supporting speech-to-text,
+                  AI reasoning, and natural text-to-speech responses.
+                  Built with local inference for privacy, speed,
+                  and low-latency conversations.
                 </p>
 
               </div>
@@ -1645,7 +1656,7 @@
                 <span class="project-tech-tag">Faster-Whisper</span>
                 <span class="project-tech-tag">Ollama</span>
                 <span class="project-tech-tag">Streamlit</span>
-                <span class="project-tech-tag">Mem0 API</span>
+                <span class="project-tech-tag">Text To Speech</span>
               </div>
               <div style="border-top: 1px solid hsl(var(--border)); padding-top: 1rem; display: flex; gap: 1.25rem;">
                 <a href="https://github.com/Ronak-vegad" target="_blank" rel="noreferrer" class="project-link">
@@ -1656,6 +1667,12 @@
                     </path>
                   </svg>
                   GitHub
+                </a>
+                <a href="https://ronak-vegad-mem0-ai---local-voice-ai-agent-app-thi0pi.streamlit.app/"
+                   target="_blank"
+                   rel="noreferrer"
+                   class="project-link">
+                   🚀 Live Demo
                 </a>
               </div>
             </div>
@@ -1744,7 +1761,7 @@
           </article>
 
           <!-- Resume Parser Pro -->
-          <article class="project-card reveal" data-type="fullstack" data-featured="false">
+          <article class="project-card reveal" data-type="fullstack" data-featured="true">
             <div>
               <div class="project-image-container">
                 <img src="images/project_resume.png" alt="Resume Parser Pro" class="project-img" />
@@ -1755,8 +1772,10 @@
                   <span class="project-tag">Full-Stack</span>
                 </div>
                 <p class="project-desc">
-                  Intelligent resume parser with a two-page upload-and-review flow. Drop a PDF → AI extracts structured
-                  skills, experience, and project data. Clean UI for review before export.
+                  AI-powered Resume Parser that extracts skills,
+                  education, experience, projects, and contact details
+                  from PDF resumes and converts them into structured data
+                  through a clean web interface.
                 </p>
 
               </div>
@@ -1778,6 +1797,12 @@
                     </path>
                   </svg>
                   GitHub
+                </a>
+                <a href="https://resume-parser-plum-one.vercel.app/"
+                   target="_blank"
+                   rel="noreferrer"
+                   class="project-link">
+                   🚀 Live Demo
                 </a>
               </div>
             </div>
@@ -2302,6 +2327,38 @@
         if (link.getAttribute('href') === `#${currentSectionId}`) {
           link.classList.add('active');
         }
+      });
+    });
+
+
+    // Projects Filtering System
+    const filterTabs = document.querySelectorAll('.filter-tab');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        filterTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        const filter = tab.dataset.filter;
+
+        projectCards.forEach(card => {
+          if (filter === "all") {
+              card.style.display = "flex";
+          }
+          else if (filter === "featured") {
+              card.style.display =
+                  card.dataset.featured === "true"
+                      ? "flex"
+                      : "none";
+          }
+          else {
+              card.style.display =
+                  card.dataset.type === filter
+                      ? "flex"
+                      : "none";
+          }
+        });
       });
     });
 
